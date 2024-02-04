@@ -75,11 +75,68 @@ def loginPage():
             case _:
                 print("You shouldnt see this")
 
+def homePage():
+    while True:
+        print("INCOLLEGE HOME PAGE")
+        print("1. Search for a job/internship")
+        print("2. Find someone you know")
+        print("3. Learn a new skill")
+        option = int(input("Select an option :"))
+        if (option <= 1) or (option >= 3):
+            print("Invalid option try again")
+            True
+        else:
+            return option
+
+def jobSearch():
+    print("SEARCH FOR A JOB/INTERNSHIP PAGE")
+    print("Under construction")
+
+def personSearch():
+    print("FIND SOMEONE YOU KNOW PAGE")
+    print("Under construction")
+
+def skillSearch():
+    while True:
+        print("LEARN A NEW SKILL PAGE")
+        print("Skill 1 - ")
+        print("Skill 2 - ")
+        print("Skill 3 - ")
+        print("Skill 4 - ")
+        print("Skill 5 - ")
+        print("Enter 6 for Return to Main Page")
+        option = int(input("Select a skill :"))
+        if (option <= 1) or (option >= 5):
+            print("Invalid option try again")
+            True
+        elif (option == 6):
+            loginPage()
+        else:
+            match option:
+                case 1:
+                    print("Under construction")
+                case 2:
+                    print("Under construction")
+                case 3:
+                    print("Under construction")
+                case 4:
+                    print("Under construction")
+                case 5:
+                    print("Under construction")
+
+
 #Main function
 if loginPage():
-    print("This is the next page!")
-    #implement your next page here, login worked 
-    #lmk if you need any help! - Nandhu
+    option = homePage()
+    match option:
+        case 1 : 
+            jobSearch()
+        case 2 : 
+            personSearch()
+        case 3 : 
+            skillSearch()
+
+    
 
             
 

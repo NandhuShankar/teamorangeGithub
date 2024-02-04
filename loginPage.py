@@ -99,11 +99,11 @@ def personSearch():
 def skillSearch():
     while True:
         print("LEARN A NEW SKILL PAGE")
-        print("Skill 1 - ")
-        print("Skill 2 - ")
-        print("Skill 3 - ")
-        print("Skill 4 - ")
-        print("Skill 5 - ")
+        print("Skill 1 - Learn 3D Printing")
+        print("Skill 2 - Learn Data Structures")
+        print("Skill 3 - Learn Analysis of Algoritms")
+        print("Skill 4 - Learn Databas Design")
+        print("Skill 5 - Learn Architecture")
         print("Enter 6 for Return to Main Page")
         option = int(input("Select a skill :"))
         if (option <= 1) or (option >= 5):

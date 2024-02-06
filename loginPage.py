@@ -82,7 +82,7 @@ def homePage():
         print("2. Find someone you know")
         print("3. Learn a new skill")
         option = int(input("Select an option :"))
-        if (option <= 1) or (option >= 3):
+        if (option < 1) or (option > 3):
             print("Invalid option try again")
             True
         else:
@@ -106,27 +106,30 @@ def skillSearch():
         print("Skill 5 - Learn Architecture")
         print("Enter 6 for Return to Main Page")
         option = int(input("Select a skill :"))
-        if (option <= 1) or (option >= 5):
+        if (option == 6):
+            homePageOptions()
+        elif (option < 1) or (option > 5):
             print("Invalid option try again")
             True
-        elif (option == 6):
-            loginPage()
         else:
             match option:
                 case 1:
                     print("Under construction")
+                    break;
                 case 2:
                     print("Under construction")
+                    break;
                 case 3:
                     print("Under construction")
+                    break;
                 case 4:
                     print("Under construction")
+                    break;
                 case 5:
                     print("Under construction")
+                    break;
 
-
-#Main function
-if loginPage():
+def homePageOptions():
     option = homePage()
     match option:
         case 1 : 
@@ -135,6 +138,10 @@ if loginPage():
             personSearch()
         case 3 : 
             skillSearch()
+            
+#Main function
+if loginPage():
+    homePageOptions()
 
     
 

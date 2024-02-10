@@ -4,8 +4,21 @@
 
 #import regex for password checking
 import re
+from typing import Union, List, TypedDict
+
 #User dictionary
 database = {}
+
+# array of dictionaries
+class Posting(TypedDict):
+    title: str
+    description: str
+    employer: str
+    location: str
+    salary: str
+    posted_by: str
+
+job_postings: List[Posting] = []
 
 #log_or_sign asks the user of they want to log in or sign up, returns that decision
 def log_or_sign():
@@ -27,13 +40,14 @@ def log_or_sign():
         else:
             print("Invalid input, try again\n")
 
+
 #Signup page
 def signup(users_dict):
     #check if max users have been created
     if len(users_dict)== 5:
         print("All permitted accounts have been created, please come back later")
         return False
-    
+
     username = input("Enter a new username: ")
     # Check if the username is unique
     if username in users_dict:
@@ -54,14 +68,14 @@ def signup(users_dict):
     print("User created successfully.")
     return True
 
-#login function
-def login(user_dict):
+#login function returning a user_dict
+def login(user_dict: dict) -> Union[dict, int]:
     username = input("Enter username:")
     password = input("Enter password:")
     if username in user_dict:
         if user_dict[username] == password:
             print("You have successfully logged in! Taking to site....")
-            return 1
+            return user_dict
     else:
         print("Incorrect login, try again.")
         return 0
@@ -74,12 +88,13 @@ def loginPage():
         match user_desi:
             case "l":
                 auth = login(database)
-                if auth == 1:
-                    return True
+                if auth != 0:
+                    return auth
             case "s":
                 signup(database)
             case _:
-                print("You shouldnt see this")
+                print("You shouldn't see this")
+
 
 def homePage():
     while True:
@@ -94,15 +109,52 @@ def homePage():
         else:
             return option
 
-def jobSearch():
-    print("SEARCH FOR A JOB/INTERNSHIP PAGE")
-    print("Under construction")
+
+def jobSearch(authenticated_user: dict):
+    while True:
+        print("SEARCH FOR A JOB/INTERNSHIP PAGE")
+        print("1. Post a Job");
+        print("2. View Job Postings")
+        print("3. Return to Main Page")
+        option = int(input("Select an option: "))
+        match option:
+            case 1:
+                if len(job_postings) < 5:
+                    postJob(authenticated_user)
+                else:
+                    print("A maximum of 5 jobs have been posted in the system. Please choose another option.")
+            case 2:
+                # if not empty
+                viewJob()
+            case 3:
+                homePageOptions(authenticated_user)
+                break
+            case _:
+                print("Not an option")
+
+
+def viewJob(authenticated_user):
+    if len(job_postings) != 0:
+        # print every job posting
+        for i, job_posting in enumerate(job_postings):
+            job_title = job_posting["title"]
+            print(f"{i+1}. View \"{job_title}\"")
+
+        return_option_val = len(job_postings) + 1;
+        print(f"{return_option_val}. Return to home page")
+        option = int(input("Choose which job posting to view: "))
+        if option+1 == return_option_val:
+            homePageOptions(authenticated_user)
+            return
+
+        curr_job_title = job_postings[option]
+        print(f"Entering {curr_job_title}")
 
 def personSearch():
     print("FIND SOMEONE YOU KNOW PAGE")
     print("Under construction")
 
-def skillSearch():
+def skillSearch(authenticated_user):
     while True:
         print("LEARN A NEW SKILL PAGE")
         print("Skill 1 - Learn 3D Printing")
@@ -113,7 +165,7 @@ def skillSearch():
         print("Enter 6 for Return to Main Page")
         option = int(input("Select a skill :"))
         if (option == 6):
-            homePageOptions()
+            homePageOptions(authenticated_user)
         elif (option < 1) or (option > 5):
             print("Invalid option try again")
             True
@@ -135,21 +187,47 @@ def skillSearch():
                     print("Under construction")
                     break;
 
-def homePageOptions():
+def postJob(authenticated_user: dict):
+    title = input("Job Title: ")
+    description = input("Job Description: ")
+    employer = input("Employer: ")
+    location = input("Location: ")
+    salary = input("Salary: $")
+
+
+    new_job_posting = {
+        "title": title,
+        "description": description,
+        "employer": employer,
+        "location": location,
+        "salary": salary
+    }
+
+    for username, _ in authenticated_user.items():
+        new_job_posting["posted_by"] = username
+
+    job_postings.append(new_job_posting)
+    print("The job has successfully posted\n")
+
+
+def homePageOptions(authenticated_user: dict):
     option = homePage()
     match option:
-        case 1 : 
-            jobSearch()
-        case 2 : 
+        case 1:
+            jobSearch(authenticated_user)
+        case 2:
             personSearch()
-        case 3 : 
-            skillSearch()
-            
+        case 3:
+            skillSearch(authenticated_user)
+
 #Main function
-if loginPage():
-    homePageOptions()
+auth = loginPage()
 
-    
+# if auth does not fail, then go to home page
+if auth != 0:
+    homePageOptions(auth)
 
-            
+
+
+
 

@@ -9,7 +9,7 @@ from typing import Union, List, TypedDict
 #User dictionary
 database = {}
 
-# array of dictionaries
+AUTH = {}
 class Posting(TypedDict):
     title: str
     description: str
@@ -18,7 +18,8 @@ class Posting(TypedDict):
     salary: str
     posted_by: str
 
-job_postings: List[Posting] = []
+# array of postings
+JOB_POSTINGS: List[Posting] = []
 
 #log_or_sign asks the user of they want to log in or sign up, returns that decision
 def log_or_sign():
@@ -110,7 +111,7 @@ def homePage():
             return option
 
 
-def jobSearch(authenticated_user: dict):
+def jobSearch():
     while True:
         print("SEARCH FOR A JOB/INTERNSHIP PAGE")
         print("1. Post a Job");
@@ -119,42 +120,50 @@ def jobSearch(authenticated_user: dict):
         option = int(input("Select an option: "))
         match option:
             case 1:
-                if len(job_postings) < 5:
-                    postJob(authenticated_user)
+                if len(JOB_POSTINGS) < 5:
+                    postJob()
                 else:
                     print("A maximum of 5 jobs have been posted in the system. Please choose another option.")
             case 2:
                 # if not empty
                 viewJob()
             case 3:
-                homePageOptions(authenticated_user)
+                homePageOptions()
                 break
             case _:
                 print("Not an option")
 
 
-def viewJob(authenticated_user):
-    if len(job_postings) != 0:
-        # print every job posting
-        for i, job_posting in enumerate(job_postings):
-            job_title = job_posting["title"]
-            print(f"{i+1}. View \"{job_title}\"")
+def viewJob():
+    while True:
+        if len(JOB_POSTINGS) != 0:
+            # print every job posting
+            print("Job Postings:")
+            for i, job_posting in enumerate(JOB_POSTINGS):
+                job_title = job_posting["title"]
+                print(f"{i+1}. View \"{job_title}\"")
 
-        return_option_val = len(job_postings) + 1;
-        print(f"{return_option_val}. Return to home page")
-        option = int(input("Choose which job posting to view: "))
-        if option+1 == return_option_val:
-            homePageOptions(authenticated_user)
-            return
+            # return option depends on how many job postings
+            return_option_val = len(JOB_POSTINGS) + 1;
+            print(f"{return_option_val}. Return to home page")
+            option = int(input("Choose an option: "))
 
-        curr_job_title = job_postings[option]
-        print(f"Entering {curr_job_title}")
+            if option == return_option_val:
+                print("\n")
+                homePageOptions()
+                return
+            elif option < 1 or option > return_option_val:
+                print("That is not an option")
+                print("\n")
+            else:
+                curr_job_title = JOB_POSTINGS[option]
+                print(f"Entering {curr_job_title}")
 
 def personSearch():
     print("FIND SOMEONE YOU KNOW PAGE")
     print("Under construction")
 
-def skillSearch(authenticated_user):
+def skillSearch():
     while True:
         print("LEARN A NEW SKILL PAGE")
         print("Skill 1 - Learn 3D Printing")
@@ -165,7 +174,7 @@ def skillSearch(authenticated_user):
         print("Enter 6 for Return to Main Page")
         option = int(input("Select a skill :"))
         if (option == 6):
-            homePageOptions(authenticated_user)
+            homePageOptions()
         elif (option < 1) or (option > 5):
             print("Invalid option try again")
             True
@@ -187,7 +196,7 @@ def skillSearch(authenticated_user):
                     print("Under construction")
                     break;
 
-def postJob(authenticated_user: dict):
+def postJob():
     title = input("Job Title: ")
     description = input("Job Description: ")
     employer = input("Employer: ")
@@ -203,29 +212,29 @@ def postJob(authenticated_user: dict):
         "salary": salary
     }
 
-    for username, _ in authenticated_user.items():
+    for username, _ in AUTH.items():
         new_job_posting["posted_by"] = username
 
-    job_postings.append(new_job_posting)
+    JOB_POSTINGS.append(new_job_posting)
     print("The job has successfully posted\n")
 
 
-def homePageOptions(authenticated_user: dict):
+def homePageOptions():
     option = homePage()
     match option:
         case 1:
-            jobSearch(authenticated_user)
+            jobSearch()
         case 2:
             personSearch()
         case 3:
-            skillSearch(authenticated_user)
+            skillSearch()
 
 #Main function
-auth = loginPage()
+AUTH = loginPage()
 
 # if auth does not fail, then go to home page
-if auth != 0:
-    homePageOptions(auth)
+if AUTH != 0:
+    homePageOptions()
 
 
 

@@ -159,14 +159,16 @@ def viewJob():
 
             if option == return_option_val:
                 print("\n")
-                homePageOptions()
-                return
+                break
             elif option < 1 or option > return_option_val:
                 print("That is not an option")
                 print("\n")
             else:
                 curr_job_title = JOB_POSTINGS[option]
                 print(f"Entering {curr_job_title}")
+
+    # if broke while True
+    homePageOptions()
 
 
 def personSearch():

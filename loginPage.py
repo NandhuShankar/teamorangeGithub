@@ -11,6 +11,13 @@ from typing import Union, List, TypedDict
 
 # User dictionary
 database = {}
+#User class
+class User:
+    def __init__(self, username, password, first_name, last_name):
+        self.username = username
+        self.password = password
+        self.first_name = first_name
+        self.last_name = last_name
 # authenticated user
 AUTH = {}
 
@@ -51,6 +58,7 @@ def log_or_sign():
 
 
 # Signup page
+# Signup page
 def signup(users_dict):
     # check if max users have been created
     if len(users_dict) == 5:
@@ -72,8 +80,10 @@ def signup(users_dict):
         print("Password does not meet the criteria.")
         return False
 
-    # If all checks pass, save the username and password
-    users_dict[username] = password
+    first_name = input("Enter your first name: ")
+    last_name = input("Enter your last name: ")
+    # create new user
+    users_dict[username] = User(username, password, first_name, last_name)
     print("User created successfully.")
     return True
 
@@ -82,10 +92,9 @@ def signup(users_dict):
 def login(user_dict: dict) -> Union[dict, int]:
     username = input("Enter username:")
     password = input("Enter password:")
-    if username in user_dict:
-        if user_dict[username] == password:
-            print("You have successfully logged in! Taking to site....")
-            return user_dict
+    if username in user_dict and user_dict[username].password == password:
+        print(f"You have successfully logged in! Welcome, {user_dict[username].first_name}!")
+        return user_dict
     else:
         print("Incorrect login, try again.")
         return 0
@@ -173,7 +182,23 @@ def viewJob():
 
 def personSearch():
     print("FIND SOMEONE YOU KNOW PAGE")
-    print("Under construction")
+
+    # Prompt for the first name and last name
+    search_first_name = input("Enter the first name of the person you're looking for: ")
+    search_last_name = input("Enter the last name of the person you're looking for: ")
+
+    # Search through the database
+    found = False  # Flag to keep track if user is found
+    for user in database.values():
+        if user.first_name == search_first_name and user.last_name == search_last_name:
+            found = True
+            break
+
+    if found:
+        print("They are a part of the InCollege system.")
+    else:
+        print("They are not yet a part of the InCollege system yet.")
+    homePageOptions()
 
 
 def skillSearch():

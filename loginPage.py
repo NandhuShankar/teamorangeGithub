@@ -9,6 +9,12 @@ database = {}
 
 #log_or_sign asks the user of they want to log in or sign up, returns that decision
 def log_or_sign():
+    print("After graduating from college with a business degree, I was eager to start my career but struggling to "
+          "land interviews. I heard about InCollege from a friend - it's an online platform that matches college "
+          "students and grads with great companies and jobs. I created my profile and instantly had access to "
+          "thousands of job openings at awesome companies. InCollege's matching technology suggested roles that "
+          "aligned perfectly with my degree, skills, and interests.")
+
     print("Welcome to InCollege's login page!\n")
     while True:
         desi = input("Would you like to log in or signup? (Type L or S:) ")

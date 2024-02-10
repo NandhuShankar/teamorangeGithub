@@ -1,15 +1,21 @@
-#Epic 1
-#Developer 1: Aliana Palmer
-#Developer 2: Nandhakumar Shankarkala
+"""
+Epic 1 - Sprint 2
+Developer 1: Nandhakumar Shankarkala
+Developer 2: James Yab
+Date: Feb 2, 2024
+"""
 
-#import regex for password checking
+# import regex for password checking
 import re
 from typing import Union, List, TypedDict
 
-#User dictionary
+# User dictionary
 database = {}
-
+# authenticated user
 AUTH = {}
+
+
+# type hinting for a job posting
 class Posting(TypedDict):
     title: str
     description: str
@@ -18,10 +24,12 @@ class Posting(TypedDict):
     salary: str
     posted_by: str
 
+
 # array of postings
 JOB_POSTINGS: List[Posting] = []
 
-#log_or_sign asks the user of they want to log in or sign up, returns that decision
+
+# log_or_sign asks the user of they want to log in or sign up, returns that decision
 def log_or_sign():
     print("After graduating from college with a business degree, I was eager to start my career but struggling to "
           "land interviews. I heard about InCollege from a friend - it's an online platform that matches college "
@@ -42,10 +50,10 @@ def log_or_sign():
             print("Invalid input, try again\n")
 
 
-#Signup page
+# Signup page
 def signup(users_dict):
-    #check if max users have been created
-    if len(users_dict)== 5:
+    # check if max users have been created
+    if len(users_dict) == 5:
         print("All permitted accounts have been created, please come back later")
         return False
 
@@ -69,7 +77,8 @@ def signup(users_dict):
     print("User created successfully.")
     return True
 
-#login function returning a user_dict
+
+# login function returning a user_dict or 0
 def login(user_dict: dict) -> Union[dict, int]:
     username = input("Enter username:")
     password = input("Enter password:")
@@ -81,11 +90,12 @@ def login(user_dict: dict) -> Union[dict, int]:
         print("Incorrect login, try again.")
         return 0
 
-#login page
+
+# login page
 def loginPage():
     while True:
         user_desi = log_or_sign()
-        #Desision tree
+        # Decision tree
         match user_desi:
             case "l":
                 auth = login(database)
@@ -106,7 +116,6 @@ def homePage():
         option = int(input("Select an option :"))
         if (option < 1) or (option > 3):
             print("Invalid option try again")
-            True
         else:
             return option
 
@@ -114,7 +123,7 @@ def homePage():
 def jobSearch():
     while True:
         print("SEARCH FOR A JOB/INTERNSHIP PAGE")
-        print("1. Post a Job");
+        print("1. Post a Job")
         print("2. View Job Postings")
         print("3. Return to Main Page")
         option = int(input("Select an option: "))
@@ -141,10 +150,10 @@ def viewJob():
             print("Job Postings:")
             for i, job_posting in enumerate(JOB_POSTINGS):
                 job_title = job_posting["title"]
-                print(f"{i+1}. View \"{job_title}\"")
+                print(f"{i + 1}. View \"{job_title}\"")
 
             # return option depends on how many job postings
-            return_option_val = len(JOB_POSTINGS) + 1;
+            return_option_val = len(JOB_POSTINGS) + 1
             print(f"{return_option_val}. Return to home page")
             option = int(input("Choose an option: "))
 
@@ -159,9 +168,11 @@ def viewJob():
                 curr_job_title = JOB_POSTINGS[option]
                 print(f"Entering {curr_job_title}")
 
+
 def personSearch():
     print("FIND SOMEONE YOU KNOW PAGE")
     print("Under construction")
+
 
 def skillSearch():
     while True:
@@ -173,28 +184,28 @@ def skillSearch():
         print("Skill 5 - Learn Architecture")
         print("Enter 6 for Return to Main Page")
         option = int(input("Select a skill :"))
-        if (option == 6):
+        if option == 6:
             homePageOptions()
         elif (option < 1) or (option > 5):
             print("Invalid option try again")
-            True
         else:
             match option:
                 case 1:
                     print("Under construction")
-                    break;
+                    break
                 case 2:
                     print("Under construction")
-                    break;
+                    break
                 case 3:
                     print("Under construction")
-                    break;
+                    break
                 case 4:
                     print("Under construction")
-                    break;
+                    break
                 case 5:
                     print("Under construction")
-                    break;
+                    break
+
 
 def postJob():
     title = input("Job Title: ")
@@ -202,7 +213,6 @@ def postJob():
     employer = input("Employer: ")
     location = input("Location: ")
     salary = input("Salary: $")
-
 
     new_job_posting = {
         "title": title,
@@ -229,14 +239,10 @@ def homePageOptions():
         case 3:
             skillSearch()
 
-#Main function
+
+# Main function
 AUTH = loginPage()
 
 # if auth does not fail, then go to home page
 if AUTH != 0:
     homePageOptions()
-
-
-
-
-

@@ -55,7 +55,6 @@ def log_or_sign():
 
 
 # Signup page
-# Signup page
 def signup(users_dict):
     # check if max users have been created
     if len(users_dict) == 5:

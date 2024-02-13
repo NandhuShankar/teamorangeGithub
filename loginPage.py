@@ -38,21 +38,18 @@ JOB_POSTINGS: List[Posting] = []
 
 # log_or_sign asks the user of they want to log in or sign up, returns that decision
 def log_or_sign():
-    print("After graduating from college with a business degree, I was eager to start my career but struggling to "
-          "land interviews. I heard about InCollege from a friend - it's an online platform that matches college "
-          "students and grads with great companies and jobs. I created my profile and instantly had access to "
-          "thousands of job openings at awesome companies. InCollege's matching technology suggested roles that "
-          "aligned perfectly with my degree, skills, and interests.")
-
     print("Welcome to InCollege's login page!\n")
     while True:
-        desi = input("Would you like to log in or signup? (Type L or S:) ")
+        desi = input("Would you like to log in, signup, or view success story? (Type L, S, or V:) ")
         if desi.lower() == "l":
             print("You are logging in.")
             return "l"
         elif desi.lower() == "s":
             print("You are signing up.....")
             return "s"
+        elif desi.lower() == "v":
+            print("You are viewing success stories.")
+            return "v"
         else:
             print("Invalid input, try again\n")
 
@@ -99,6 +96,20 @@ def login(user_dict: dict) -> Union[dict, int]:
         print("Incorrect login, try again.")
         return 0
 
+def viewSuccessStory():
+    print("After graduating from college with a business degree, I was eager to start my career but struggling to "
+          "land interviews. I heard about InCollege from a friend - it's an online platform that matches college "
+          "students and grads with great companies and jobs. I created my profile and instantly had access to "
+          "thousands of job openings at awesome companies. InCollege's matching technology suggested roles that "
+          "aligned perfectly with my degree, skills, and interests.")
+    option = input("Play video or Return to main page? (Type P or R:) ")
+    if option.lower() == "p":
+        print("Video is now playing")
+    elif option.lower() == "r":
+        print("Returning to main page...")
+    else:
+        print("Invalid input, returning to login page...")
+        return
 
 # login page
 def loginPage():
@@ -112,6 +123,8 @@ def loginPage():
                     return auth
             case "s":
                 signup(database)
+            case "v":
+                viewSuccessStory();
             case _:
                 print("You shouldn't see this")
 

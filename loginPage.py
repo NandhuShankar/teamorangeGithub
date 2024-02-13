@@ -167,6 +167,9 @@ def jobSearch():
 
 def viewJob():
     while True:
+        if len(JOB_POSTINGS) == 0:
+            print("No job postings available\n")
+            break
         if len(JOB_POSTINGS) != 0:
             # print every job posting
             print("Job Postings:")
@@ -186,8 +189,8 @@ def viewJob():
                 print("That is not an option")
                 print("\n")
             else:
-                curr_job_title = JOB_POSTINGS[option]
-                print(f"Entering {curr_job_title}")
+                curr_job_title = JOB_POSTINGS[option-1]
+                print(f"Entering {curr_job_title.get('title')} job posting..")
 
     # if broke while True
     homePageOptions()

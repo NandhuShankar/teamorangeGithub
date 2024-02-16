@@ -37,21 +37,29 @@ JOB_POSTINGS: List[Posting] = []
 
 
 # log_or_sign asks the user of they want to log in or sign up, returns that decision
-def log_or_sign():
+def log_or_sign() -> int:
     print("Welcome to InCollege's login page!\n")
     while True:
-        desi = input("Would you like to log in, signup, or view success story? (Type L, S, or V:) ")
-        if desi.lower() == "l":
-            print("You are logging in.")
-            return "l"
-        elif desi.lower() == "s":
-            print("You are signing up.....")
-            return "s"
-        elif desi.lower() == "v":
-            print("You are viewing success stories.")
-            return "v"
-        else:
-            print("Invalid input, try again\n")
+        print("1. Log in")
+        print("2. Sign up")
+        print("3. View success stories")
+        print("4. View important links")
+        option = int(input("Please select one of the following options:"))
+        match option:
+            case 1:
+                print("You are logging in.")
+                return 1
+            case 2:
+                print("You are signing up.....")
+                return 2
+            case 3:
+                print("You are viewing success stories.")
+                return 3
+            case 4:
+                print("You are viewing important links.")
+                return 4
+            case _:
+                print("Invalid input, try again\n")
 
 
 # Signup page
@@ -116,14 +124,14 @@ def loginPage():
         user_desi = log_or_sign()
         # Decision tree
         match user_desi:
-            case "l":
+            case 1:
                 auth = login(database)
                 if auth != 0:
                     return auth
-            case "s":
+            case 2:
                 signup(database)
-            case "v":
-                viewSuccessStory();
+            case 3:
+                viewSuccessStory()
             case _:
                 print("You shouldn't see this")
 
@@ -134,8 +142,9 @@ def homePage():
         print("1. Search for a job/internship")
         print("2. Find someone you know")
         print("3. Learn a new skill")
+        print("4. InCollege Important Links")
         option = int(input("Select an option :"))
-        if (option < 1) or (option > 3):
+        if (option < 1) or (option > 4):
             print("Invalid option try again")
         else:
             return option

@@ -8,6 +8,11 @@ Date: Feb 2, 2024
 # import regex for password checking
 import re
 from typing import Union, List, TypedDict
+from viewImportantLinks import viewImportantLinks
+# user settings for language and guest controls
+import settings
+
+
 
 # User dictionary
 database = {}
@@ -132,6 +137,8 @@ def loginPage():
                 signup(database)
             case 3:
                 viewSuccessStory()
+            case 4: 
+                viewImportantLinks()
             case _:
                 print("You shouldn't see this")
 

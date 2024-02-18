@@ -176,7 +176,6 @@ def jobSearch():
                 # if not empty
                 viewJob()
             case 3:
-                homePageOptions()
                 break
             case _:
                 print("Not an option")
@@ -231,7 +230,6 @@ def personSearch():
         print("They are a part of the InCollege system.")
     else:
         print("They are not yet a part of the InCollege system yet.")
-    homePageOptions()
 
 
 def skillSearch():
@@ -245,7 +243,7 @@ def skillSearch():
         print("Enter 6 for Return to Main Page")
         option = int(input("Select a skill :"))
         if option == 6:
-            homePageOptions()
+            break
         elif (option < 1) or (option > 5):
             print("Invalid option try again")
         else:
@@ -405,5 +403,5 @@ def homePageOptions():
 AUTH = loginPage()
 
 # if auth does not fail, then go to home page
-if AUTH != 0:
+while AUTH != 0:
     homePageOptions()

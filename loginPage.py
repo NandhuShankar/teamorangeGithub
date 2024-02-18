@@ -309,11 +309,7 @@ def viewUsefulLinks():
             case 4:
                 print("Under construction")
             case 5:
-                if len(AUTH) == 0:
-                    loginPage()
-                else: 
-                    homePageOptions()
-                    
+                return
             case _:
                 print("Not an option")
 
@@ -346,7 +342,8 @@ def viewGeneralLinks():
             case 7:
                 print("Under construction")
             case 8:
-                viewUsefulLinks()
+                return
+
             case _:
                 print("Not an option")
 
@@ -385,11 +382,8 @@ def viewImportantLinks():
                 importantLinks.switchLanguages()
             case 10:
                 print("Returning to Home Page")
-                if len(AUTH) == 0:
-                    loginPage()
-                else:
-                    homePageOptions()
-                break
+                return
+
             case _:
                 print("Not an option")
                 continue

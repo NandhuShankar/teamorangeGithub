@@ -1,8 +1,4 @@
 import settings
-from loginPage import AUTH, loginPage, homePageOptions
-
-
-
 
 
 def printCopyrightNotice():
@@ -90,8 +86,7 @@ def viewGuestControls():
                 case 3:
                     settings.GUEST_CONTROLS['Targeted Ads'] = not settings.GUEST_CONTROLS['Targeted Ads']
                 case 4:
-                    viewImportantLinks()
-                    break
+                    return
                 case _:
                     print("Not an option")
                     continue

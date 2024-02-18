@@ -8,11 +8,7 @@ Date: Feb 2, 2024
 # import regex for password checking
 import re
 from typing import Union, List, TypedDict
-from viewImportantLinks import viewImportantLinks
-# user settings for language and guest controls
-import settings
-
-
+import importantLinks
 
 # User dictionary
 database = {}
@@ -49,6 +45,7 @@ def log_or_sign() -> int:
         print("2. Sign up")
         print("3. View success stories")
         print("4. View important links")
+        print("5. View useful links")
         option = int(input("Please select one of the following options:"))
         match option:
             case 1:
@@ -63,6 +60,9 @@ def log_or_sign() -> int:
             case 4:
                 print("You are viewing important links.")
                 return 4
+            case 5:
+                print("You are viewing useful links.")
+                return 5
             case _:
                 print("Invalid input, try again\n")
 
@@ -139,6 +139,8 @@ def loginPage():
                 viewSuccessStory()
             case 4: 
                 viewImportantLinks()
+            case 5:
+                viewUsefulLinks()
             case _:
                 print("You shouldn't see this")
 
@@ -150,8 +152,9 @@ def homePage():
         print("2. Find someone you know")
         print("3. Learn a new skill")
         print("4. InCollege Important Links")
+        print("5. InCollege Useful Links")
         option = int(input("Select an option :"))
-        if (option < 1) or (option > 4):
+        if (option < 1) or (option > 5):
             print("Invalid option try again")
         else:
             return option
@@ -287,6 +290,109 @@ def postJob():
     print("The job has successfully posted\n")
 
 
+def viewUsefulLinks(): 
+    while True: 
+        print("INCOLLEGE USEFUL LINKS")
+        print("1. General")
+        print("2. Browse InCollege")
+        print("3. Business Solutions")
+        print("4. Directories")
+        print("5. Return to previous page")
+        option = int(input("Select an option: "))
+        match option:
+            case 1:
+                print("Under construction")
+            case 2:
+                print("Under construction")
+            case 3:
+                print("Under construction")
+            case 4:
+                print("Under construction")
+            case 5:
+                if len(AUTH) == 0:
+                    loginPage()
+                else: 
+                    homePageOptions()
+                    
+            case _:
+                print("Not an option")
+
+def viewGeneralLinks():
+    while True:
+        print("GENERAL LINKS")
+        print("1. Sign Up")
+        print("2. Help Center")
+        print("3. About")
+        print("4. Press")
+        print("5. Blog")
+        print("6. Careers")
+        print("7. Developers")
+        print("8. Return to previous page")
+        option = int(input("Choose an option: "))
+        match option:
+            case 1:
+                signup(database)
+            case 2:
+                print("We're here to help")
+            case 3:
+                print("In College: Welcome to In College, the world's largest college student"
+                      "network with many users in many countries and territories worldwide")
+            case 4:
+                print("In College Pressroom: Stay on top of the latest news, updates, and reports")
+            case 5:
+                print("Under construction")
+            case 6:
+                print("Under construction")
+            case 7:
+                print("Under construction")
+            case 8:
+                viewUsefulLinks()
+            case _:
+                print("Not an option")
+
+def viewImportantLinks():
+    while True:
+        print("INCOLLEGE IMPORTANT LINKS")
+        print("1. Copyright Notice")
+        print("2. About")
+        print("3. Accessibility")
+        print("4. User Agreement")
+        print("5. Privacy Policy")
+        print("6. Cookie Policy")
+        print("7. Brand Policy")
+        print("8. Guest Controls")
+        print("9. Languages")
+        print("10. Return to Home Page")
+        option = int(input("Select an option: "))
+        match option:
+            case 1:
+                importantLinks.printCopyrightNotice()
+            case 2:
+                importantLinks.printAbout()
+            case 3:
+                importantLinks.printAccessibility()
+            case 4:
+                importantLinks.printUserAgreement()
+            case 5:
+                importantLinks.printPrivacyPolicy()
+            case 6:
+                importantLinks.printCookiePolicy()
+            case 7:
+                importantLinks.printBrandPolicy()
+            case 8:
+                importantLinks.viewGuestControls()
+            case 9:
+                importantLinks.switchLanguages()
+            case 10:
+                print("Returning to Home Page")
+                if len(AUTH) == 0:
+                    loginPage()
+                else:
+                    homePageOptions()
+                break
+            case _:
+                print("Not an option")
+                continue
 def homePageOptions():
     option = homePage()
     match option:
@@ -296,6 +402,10 @@ def homePageOptions():
             personSearch()
         case 3:
             skillSearch()
+        case 4:
+            viewImportantLinks()
+        case 5:
+            viewUsefulLinks()
 
 
 # Main function

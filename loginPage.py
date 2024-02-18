@@ -1,10 +1,9 @@
 """
-Epic 1 - Sprint 2
-Developer 1: Nandhakumar Shankarkala
-Developer 2: James Yab
-Date: Feb 2, 2024
+Epic 3
+Developer 1: James Yab
+Developer 2: Abylkhair Zholdybay
 """
-# TODO: when logging in, and backing out from links, it ends the program
+
 # import regex for password checking
 import re
 from typing import Union, List, TypedDict

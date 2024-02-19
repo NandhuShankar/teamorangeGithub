@@ -298,7 +298,7 @@ def viewUsefulLinks():
         option = int(input("Select an option: "))
         match option:
             case 1:
-                print("Under construction")
+                viewGeneralLinks()
             case 2:
                 print("Under construction")
             case 3:

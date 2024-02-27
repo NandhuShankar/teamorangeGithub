@@ -220,6 +220,7 @@ def viewJob():
     homePageOptions()
 
 
+"""
 def personSearch():
     print("FIND SOMEONE YOU KNOW PAGE")
 
@@ -238,6 +239,57 @@ def personSearch():
         print("They are a part of the InCollege system.")
     else:
         print("They are not yet a part of the InCollege system yet.")
+"""
+
+
+def personSearch():
+    print("FIND SOMEONE YOU KNOW PAGE")
+
+    search_option = int(input("Search by:\n1. Last Name\n2. University\n3. Major\nEnter option (1, 2, or 3): "))
+
+    if search_option == 1:
+        search_last_name = input("Enter the last name of the person you're looking for: ")
+        search_results = search_students_by_last_name(search_last_name)
+    elif search_option == 2:
+        search_university = input("Enter the university of the person you're looking for: ")
+        search_results = search_students_by_university(search_university)
+    elif search_option == 3:
+        search_major = input("Enter the major of the person you're looking for: ")
+        search_results = search_students_by_major(search_major)
+    else:
+        print("Invalid option. Returning to the main page.")
+        return
+
+    if search_results:
+        print("Search results:")
+        for result in search_results:
+            print(f"{result.first_name} {result.last_name} - {result.major} at {result.university}")
+    else:
+        print("No matching results found.")
+
+
+def search_students_by_last_name(last_name):
+    found_students = []
+    for user in database.values():
+        if user.last_name.lower() == last_name.lower():
+            found_students.append(user)
+    return found_students
+
+
+def search_students_by_university(university):
+    found_students = []
+    for user in database.values():
+        if hasattr(user, 'university') and user.university.lower() == university.lower():
+            found_students.append(user)
+    return found_students
+
+
+def search_students_by_major(major):
+    found_students = []
+    for user in database.values():
+        if hasattr(user, 'major') and user.major.lower() == major.lower():
+            found_students.append(user)
+    return found_students
 
 
 def skillSearch():

@@ -1,6 +1,6 @@
 """
 Epic 3
-Developer 1: James Yab
+Developer 1: Mihir Karnani
 Developer 2: Abylkhair Zholdybay
 """
 

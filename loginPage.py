@@ -69,7 +69,7 @@ def log_or_sign() -> int:
 # Signup page
 def signup(users_dict):
     # check if max users have been created
-    if len(users_dict) == 5:
+    if len(users_dict) == 10:
         print("All permitted accounts have been created, please come back later")
         return False
 

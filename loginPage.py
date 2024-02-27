@@ -11,7 +11,9 @@ import importantLinks
 
 # User dictionary
 database = {}
-#User class
+
+
+# User class
 class User:
     def __init__(self, username, password, first_name, last_name, major, university):
         self.username = username
@@ -144,7 +146,7 @@ def loginPage():
                 signup(database)
             case 3:
                 viewSuccessStory()
-            case 4: 
+            case 4:
                 viewImportantLinks()
             case 5:
                 viewUsefulLinks()
@@ -213,7 +215,7 @@ def viewJob():
                 print("That is not an option")
                 print("\n")
             else:
-                curr_job_title = JOB_POSTINGS[option-1]
+                curr_job_title = JOB_POSTINGS[option - 1]
                 print(f"Entering {curr_job_title.get('title')} job posting..")
 
     # if broke while True
@@ -347,8 +349,8 @@ def postJob():
     print("The job has successfully posted\n")
 
 
-def viewUsefulLinks(): 
-    while True: 
+def viewUsefulLinks():
+    while True:
         print("INCOLLEGE USEFUL LINKS")
         print("1. General")
         print("2. Browse InCollege")
@@ -369,6 +371,7 @@ def viewUsefulLinks():
                 return
             case _:
                 print("Not an option")
+
 
 def viewGeneralLinks():
     while True:
@@ -403,6 +406,7 @@ def viewGeneralLinks():
 
             case _:
                 print("Not an option")
+
 
 def viewImportantLinks():
     while True:
@@ -444,6 +448,8 @@ def viewImportantLinks():
             case _:
                 print("Not an option")
                 continue
+
+
 def homePageOptions():
     option = homePage()
     match option:

@@ -13,11 +13,15 @@ import importantLinks
 database = {}
 #User class
 class User:
-    def __init__(self, username, password, first_name, last_name):
+    def __init__(self, username, password, first_name, last_name, major, university):
         self.username = username
         self.password = password
         self.first_name = first_name
         self.last_name = last_name
+        self.major = major
+        self.university = university
+
+
 # authenticated user
 AUTH = {}
 
@@ -90,8 +94,10 @@ def signup(users_dict):
 
     first_name = input("Enter your first name: ")
     last_name = input("Enter your last name: ")
+    major = input("Enter your major: ")
+    university = input("Enter your university: ")
     # create new user
-    users_dict[username] = User(username, password, first_name, last_name)
+    users_dict[username] = User(username, password, first_name, last_name, major, university)
     print("User created successfully.")
     return True
 
@@ -107,6 +113,7 @@ def login(user_dict: dict) -> Union[dict, int]:
         print("Incorrect login, try again.")
         return 0
 
+
 def viewSuccessStory():
     print("After graduating from college with a business degree, I was eager to start my career but struggling to "
           "land interviews. I heard about InCollege from a friend - it's an online platform that matches college "
@@ -121,6 +128,7 @@ def viewSuccessStory():
     else:
         print("Invalid input, returning to login page...")
         return
+
 
 # login page
 def loginPage():

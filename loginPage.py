@@ -11,17 +11,21 @@ import importantLinks
 
 # User dictionary
 database = {}
-
-
-# User class
+#User class
 class User:
-    def __init__(self, username, password, first_name, last_name, major, university):
+    def __init__(self, username, password,
+                 first_name, last_name, major,
+                 university, description="", experience=""):
         self.username = username
         self.password = password
         self.first_name = first_name
         self.last_name = last_name
-        self.major = major
-        self.university = university
+
+        # capitalize each word in major and university
+        self.major = major.title()
+        self.university = university.title()
+        self.description = description
+        self.experience = experience
 
 
 # authenticated user
@@ -146,7 +150,7 @@ def loginPage():
                 signup(database)
             case 3:
                 viewSuccessStory()
-            case 4:
+            case 4: 
                 viewImportantLinks()
             case 5:
                 viewUsefulLinks()
@@ -162,8 +166,9 @@ def homePage():
         print("3. Learn a new skill")
         print("4. InCollege Important Links")
         print("5. InCollege Useful Links")
+        print("6. View/Edit Profile")
         option = int(input("Select an option :"))
-        if (option < 1) or (option > 5):
+        if (option < 1) or (option > 6):
             print("Invalid option try again")
         else:
             return option
@@ -215,7 +220,7 @@ def viewJob():
                 print("That is not an option")
                 print("\n")
             else:
-                curr_job_title = JOB_POSTINGS[option - 1]
+                curr_job_title = JOB_POSTINGS[option-1]
                 print(f"Entering {curr_job_title.get('title')} job posting..")
 
     # if broke while True
@@ -349,8 +354,8 @@ def postJob():
     print("The job has successfully posted\n")
 
 
-def viewUsefulLinks():
-    while True:
+def viewUsefulLinks(): 
+    while True: 
         print("INCOLLEGE USEFUL LINKS")
         print("1. General")
         print("2. Browse InCollege")
@@ -371,7 +376,6 @@ def viewUsefulLinks():
                 return
             case _:
                 print("Not an option")
-
 
 def viewGeneralLinks():
     while True:
@@ -406,7 +410,6 @@ def viewGeneralLinks():
 
             case _:
                 print("Not an option")
-
 
 def viewImportantLinks():
     while True:
@@ -448,8 +451,6 @@ def viewImportantLinks():
             case _:
                 print("Not an option")
                 continue
-
-
 def homePageOptions():
     option = homePage()
     match option:
@@ -463,7 +464,68 @@ def homePageOptions():
             viewImportantLinks()
         case 5:
             viewUsefulLinks()
+        case 6:
+            current_user = ""
+            for user, _ in AUTH.items():
+                current_user = user
 
+            # get the user object
+            user = database[current_user]
+            print("View/Edit Profile")
+            viewProfile(user)
+            # for user in database.values():
+            #     if hasattr(user, 'username') and user.major.lower() == user.major.lower():
+            
+def viewProfile(user):
+    while (True):
+        print(f"Username: {user.username}")
+        print(f"First Name: {user.first_name}")
+        print(f"Last Name: {user.last_name}")
+        print(f"Major: {user.major}")
+        print(f"University: {user.university}")
+        print(f"Description: {user.description}")
+        print(f"Experience: {user.experience}")
+
+        print("1. Edit Profile")
+        print("2. Return to Home Page")
+        option = int(input("Select an option: "))
+        match option:
+            case 1:
+                editProfile(user)
+            case 2:
+                return
+            case _:
+                print("Not an option")
+                viewProfile(user)
+
+def editProfile(user):
+    while True:
+        print("Edit Profile")
+        print(f"1. First Name ({user.first_name})")
+        print(f"2. Last Name ({user.last_name})")
+        print(f"3. Major ({user.major})")
+        print(f"4. University ({user.university})")
+        print(f"5. Description ({user.description})")
+        print(f"6. Experience ({user.experience})")
+        print(f"7. Return to Profile Page")
+        option = int(input("Select an option: "))
+        match option:
+            case 1:
+                user.first_name = input("Enter new first name: ")
+            case 2:
+                user.last_name = input("Enter new last name: ")
+            case 3:
+                user.major = input("Enter new major: ")
+            case 4:
+                user.university = input("Enter new university: ")
+            case 5:
+                user.description = input("Enter new description: ")
+            case 6:
+                user.experience = input("Enter new experience: ")
+            case 7:
+                return
+            case _:
+                print("Not an option")
 
 # Main function
 AUTH = loginPage()

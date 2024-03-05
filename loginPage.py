@@ -15,7 +15,7 @@ database = {}
 class User:
     def __init__(self, username, password,
                  first_name, last_name, major,
-                 university, description="", experience=""):
+                 university, description="", experience1="", experience2="", experience3=""):
         self.username = username
         self.password = password
         self.first_name = first_name
@@ -25,7 +25,9 @@ class User:
         self.major = major.title()
         self.university = university.title()
         self.description = description
-        self.experience = experience
+        self.experience1 = experience1
+        self.experience2 = experience2
+        self.experience3 = experience3
 
 
 # authenticated user
@@ -484,7 +486,9 @@ def viewProfile(user):
         print(f"Major: {user.major}")
         print(f"University: {user.university}")
         print(f"Description: {user.description}")
-        print(f"Experience: {user.experience}")
+        print(f"Experience: {user.experience1}")
+        print(f"Experience: {user.experience2}")
+        print(f"Experience: {user.experience3}")
 
         print("1. Edit Profile")
         print("2. Return to Home Page")
@@ -506,7 +510,9 @@ def editProfile(user):
         print(f"3. Major ({user.major})")
         print(f"4. University ({user.university})")
         print(f"5. Description ({user.description})")
-        print(f"6. Experience ({user.experience})")
+        print(f"6. Experience ({user.experience1})")
+        print(f"7. Experience ({user.experience2})")
+        print(f"8. Experience ({user.experience3})")
         print(f"7. Return to Profile Page")
         option = int(input("Select an option: "))
         match option:
@@ -521,12 +527,15 @@ def editProfile(user):
             case 5:
                 user.description = input("Enter new description: ")
             case 6:
-                user.experience = input("Enter new experience: ")
+                user.experience1 = input("Enter first experience: ")
             case 7:
+                user.experience2 = input("Enter second experience: ")
+            case 8:
+                user.experience3 = input("Enter third experience: ")
+            case 9:
                 return
             case _:
                 print("Not an option")
-
 # Main function
 AUTH = loginPage()
 

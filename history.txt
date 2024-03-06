@@ -1,0 +1,247 @@
+commit 0e1543e3034edf7e260b9c6150cdff11e780908f (HEAD -> main, tag: march_05_2024_Orange, origin/main, origin/HEAD)
+Merge: 3229db0 7400ed1
+Author: NandhuShankar <100387806+NandhuShankar@users.noreply.github.com>
+Date:   Tue Mar 5 14:41:17 2024 -0500
+
+    Merge pull request #6 from NandhuShankar/nandhu
+    
+    added 3 options for descriptions
+
+commit 7400ed1f2e1a22c1ada4cc30a90146e2ad0f9de7 (origin/nandhu)
+Author: NandhuShankar <100387806+NandhuShankar@users.noreply.github.com>
+Date:   Tue Mar 5 14:40:46 2024 -0500
+
+    added 3 options for descriptions
+
+commit 3229db036d02d729b0349bc187b12b1e3868f7c7
+Author: YingJames <jamesy148@usf.edu>
+Date:   Mon Mar 4 15:02:56 2024 -0500
+
+    add profile editing
+
+commit 2aec04489c64f1d20886701495566c2357d893a6 (tag: 02_27_2024Orange)
+Author: YingJames <jamesy148@usf.edu>
+Date:   Tue Feb 27 16:04:07 2024 -0500
+
+    reformat spacing
+
+commit 0abfd31e924609b3f3f7bd12bccc7f5266480615
+Author: YingJames <jamesy148@usf.edu>
+Date:   Tue Feb 27 16:03:18 2024 -0500
+
+    reimplement person search feature to search students by university, major, or last name
+
+commit 51bdaaafee65200f1b0445e0375624169bd21295
+Author: YingJames <jamesy148@usf.edu>
+Date:   Tue Feb 27 16:00:55 2024 -0500
+
+    include major and university in each User item
+
+commit 86408c181e490ddac5119479f0bc212dcc718a09
+Author: YingJames <jamesy148@usf.edu>
+Date:   Tue Feb 27 15:58:48 2024 -0500
+
+    change developer annotation header
+
+commit 5a78683e19b12c789f706ffdd7e9bf369b58a367
+Author: YingJames <jamesy148@usf.edu>
+Date:   Tue Feb 27 15:58:20 2024 -0500
+
+    expand the max users from 5 to 10
+
+commit 00f56591673536f0f4fb31f5541dd22910d677d5 (origin/feature/james, feature/james)
+Author: YingJames <jamesy148@usf.edu>
+Date:   Mon Feb 19 13:26:55 2024 -0500
+
+    add general links view
+
+commit bafc3d377763b559d9dc9295380e925ece4ced22
+Author: jamesy <jyab0617@gmail.com>
+Date:   Sun Feb 18 11:24:49 2024 -0500
+
+    change flow of returning back to home page
+
+commit f9da4732e77c9a200e846304b2ff96dfcc350dbc
+Author: jamesy <jyab0617@gmail.com>
+Date:   Sun Feb 18 11:22:23 2024 -0500
+
+    change header comment
+
+commit 765f648bd9978b091249d20909a8b49aa84ddab6
+Author: YingJames <jamesy148@usf.edu>
+Date:   Sat Feb 17 22:14:51 2024 -0500
+
+    add TODO
+
+commit b8fbe32e3d3bf81a287d64b7b0509ebee9ed3068
+Author: YingJames <jamesy148@usf.edu>
+Date:   Sat Feb 17 22:10:50 2024 -0500
+
+    fix looping
+
+commit d3dcb5cb7a90f311c8f2dd92cb8dc1ac68550ecb
+Author: YingJames <jamesy148@usf.edu>
+Date:   Sat Feb 17 19:46:44 2024 -0500
+
+    change important links structure
+
+commit 740cdc05756f128f45a807eb02d4cb0cbd983c40
+Author: YingJames <jamesy148@usf.edu>
+Date:   Sat Feb 17 16:47:14 2024 -0500
+
+    add important links
+
+commit a32eb04a5984b9e6fc2316c9c90a0c23fb831e35
+Author: YingJames <jamesy148@usf.edu>
+Date:   Fri Feb 16 17:04:46 2024 -0500
+
+    change login/signup function to return int
+
+commit f09ee3966d36cc8d7b3969512caf2374c44540ca
+Author: jamesy <jyab0617@gmail.com>
+Date:   Tue Feb 13 10:30:29 2024 -0500
+
+    remove duplicate comment
+
+commit 9b80d79a95b468211f1414a3d1585113fdce6f2c
+Author: jamesy <jyab0617@gmail.com>
+Date:   Tue Feb 13 10:30:12 2024 -0500
+
+    fix issue with accessing out of bounds index with job posting array
+
+commit 0ac0bf3357ea50a9eb501cd402970ef06414bc7a
+Author: jamesy <jyab0617@gmail.com>
+Date:   Tue Feb 13 10:25:40 2024 -0500
+
+    add success story and play video option
+
+commit 69959bb1473f4ae3f8881b602928c1ff2faf71e1
+Author: jamesy <jyab0617@gmail.com>
+Date:   Sat Feb 10 16:15:11 2024 -0500
+
+    epic 2
+
+commit b9c1c1bf450f6c57db0c50c8fc1b25780633246d
+Merge: 9f23783 6b3be45
+Author: jamesy <jyab0617@gmail.com>
+Date:   Sat Feb 10 15:58:43 2024 -0500
+
+    Merge branch 'job_post_feature/james'
+
+commit 6b3be45a6aaad71a22d03977b5e2bb578b9ecb6d (origin/job_post_feature/james)
+Merge: 671f290 70e2b16
+Author: jamesy <jyab0617@gmail.com>
+Date:   Sat Feb 10 15:57:35 2024 -0500
+
+    Merge remote-tracking branch 'origin/job_post_feature/james' into job_post_feature/james
+
+commit 671f290ae3213dc7d64906a07065c3cb911ae5d3
+Author: jamesy <jyab0617@gmail.com>
+Date:   Sat Feb 10 15:57:21 2024 -0500
+
+    redo
+
+commit 9f23783b686982d77f7eb14b87f7be1fa0275acd
+Merge: 82d2a06 70e2b16
+Author: NandhuShankar <100387806+NandhuShankar@users.noreply.github.com>
+Date:   Sat Feb 10 15:53:32 2024 -0500
+
+    Merge pull request #4 from NandhuShankar/job_post_feature/james
+    
+    Merge pull request #3 from NandhuShankar/main
+
+commit 70e2b162408cc4ca676b3989a0e50ba9edf57d49
+Merge: 9267a4d 82d2a06
+Author: NandhuShankar <100387806+NandhuShankar@users.noreply.github.com>
+Date:   Sat Feb 10 15:52:37 2024 -0500
+
+    Merge pull request #3 from NandhuShankar/main
+    
+    Add files via upload
+
+commit 82d2a065e48081cf68b03866a9cdfe44397e00c5
+Author: NandhuShankar <100387806+NandhuShankar@users.noreply.github.com>
+Date:   Sat Feb 10 15:41:51 2024 -0500
+
+    Add files via upload
+
+commit 9267a4d41b0947adade061f51e5d09fb7041ba1d
+Author: jamesy <jyab0617@gmail.com>
+Date:   Sat Feb 10 11:28:06 2024 -0500
+
+    reformatting options in job view section
+
+commit 4bce9716600d1cd98bb4d847525f48f4b23b612b
+Author: jamesy <jyab0617@gmail.com>
+Date:   Sat Feb 10 11:18:06 2024 -0500
+
+    reformatting: comments, spacing, redundancy
+
+commit 16157e608529d0916e401f0ec0086e8c3e9b3045
+Author: jamesy <jyab0617@gmail.com>
+Date:   Sat Feb 10 11:08:06 2024 -0500
+
+    add job posting view and store who posted a job
+
+commit c10a0253337fbd6ba80d7ebe3bda4c0cffb29eec
+Author: jamesy <jyab0617@gmail.com>
+Date:   Sat Feb 10 00:57:05 2024 -0500
+
+    add job posting option under search jobs
+
+commit bb223635237c55bed76b95e67360d5aa448dac4f
+Author: jamesy <jyab0617@gmail.com>
+Date:   Fri Feb 9 22:39:17 2024 -0500
+
+    add college success story
+
+commit d5ea38a9663b1d94cc6c04bb73d42e2f908c0448
+Author: NandhuShankar <100387806+NandhuShankar@users.noreply.github.com>
+Date:   Fri Feb 9 22:05:22 2024 -0500
+
+    Delete loginPageEpic2_shankar.py
+
+commit 174478e6cb9fcd421e4cc5757be74af2ab054bd7
+Author: NandhuShankar <100387806+NandhuShankar@users.noreply.github.com>
+Date:   Fri Feb 9 22:03:02 2024 -0500
+
+    Add files via upload
+
+commit b1bb2915d100935724391873c32bdca7ba0e9eac
+Merge: b7ca992 129b574
+Author: NandhuShankar <100387806+NandhuShankar@users.noreply.github.com>
+Date:   Fri Feb 9 11:50:39 2024 -0500
+
+    Merge pull request #1 from A1iPa1/loginPage-Aliana
+    
+    Login page updated - aliana
+
+commit 129b5744f6abb14de05e743509c247175ba5b159
+Author: A1iPa1 <alpalmer@usf.edu>
+Date:   Tue Feb 6 10:15:17 2024 -0500
+
+    Update loginPage.py
+
+commit 6c8a6bc0e3997734c074f5c836ae4a86c2ff2e10
+Author: A1iPa1 <alpalmer@usf.edu>
+Date:   Sun Feb 4 14:10:57 2024 -0500
+
+    Added the homePage()
+
+commit 1a6da5cea4f315efe49613eed2638c185b81fcc3
+Author: A1iPa1 <alpalmer@usf.edu>
+Date:   Sun Feb 4 13:59:51 2024 -0500
+
+    Update loginPage.py
+
+commit b7ca992e2f69c49eb5300a1a09abce1215e2d0ec
+Author: NandhuShankar <100387806+NandhuShankar@users.noreply.github.com>
+Date:   Fri Feb 2 12:10:50 2024 -0500
+
+    Add files via upload
+
+commit ded14f22da8e8c3778098e67f2f9b23d069dde04
+Author: NandhuShankar <100387806+NandhuShankar@users.noreply.github.com>
+Date:   Fri Feb 2 00:41:23 2024 -0500
+
+    Add files via upload

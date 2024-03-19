@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome</title>
+</head>
+<body>
+    <div>
+        <h3>Useful Links</h3>
+        <a href="/general">General</a> | 
+        <a href="/browse-incollege">Browse InCollege</a> | 
+        <a href="/business-solutions">Business Solutions</a> | 
+        <a href="/directories">Directories</a>
+    </div>
+    <div>
+        <h3>InCollege Important Links</h3>
+        <a href="/copyright_notice">Copyright notice</a> | 
+        <a href="/about">About</a> | 
+        <a href="/accessibility">Accessibility</a> | 
+        <a href="/user_agreement">User Agreement</a> |
+        <a href="/privacy_policy">Privacy Policy</a> |
+        <a href="/cookie_policy">Cookie policy</a> |
+        <a href="/copyright_policy">Copyright Policy</a> |
+        <a href="/brand_policy">Brand Policy</a> |
+        <a href="/guest_control">Guest Control</a> |
+        <a href="/language">Language</a> |
+
+        <!-- Add other important links here -->
+    </div>
+    <h1>Welcome, {{ username }}!</h1>
+        <!-- Display pending friend requests if there are any -->
+        {% if pending_friend_requests %}
+        <h2>Pending Friend Requests</h2>
+        <ul>
+            {% for friend_request in pending_friend_requests %}
+                <li>
+                    {{ friend_request }} <!-- Display the username of the person who sent the friend request -->
+                    <!-- Form for accepting a friend request -->
+                    <form action="/accept-friend-request" method="post">
+                        <input type="hidden" name="from_username" value="{{ friend_request }}">
+                        <input type="hidden" name="to_username" value="{{ username }}">
+                        <input type="submit" value="Accept">
+                    </form>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No pending friend requests.</p>
+    {% endif %}
+    <ul>
+        <li><a href="/find">Find someone you know</a></li>
+        <li><a href="/learn">Learn new skill</a></li>
+        <li><a href="/search">Search for job</a></li>
+        <li><a href="/search-students">Connect with a friend</a></li>
+        <li><a href="/show-my-network/{{ username }}">Show My Network</a></li>
+        <li><a href="/logout">Logout</a></li>
+    </ul>
+</body>
+</html>

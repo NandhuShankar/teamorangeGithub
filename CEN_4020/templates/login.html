@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login or Signup</title>
+    <script>
+        function playVideo() {
+            // Display the text "video is playing"
+            document.getElementById("videoStatus").innerHTML = "Video is playing";
+        }
+    </script>
+</head>
+<body>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="{{ category }}">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    <div>
+        <h3>Useful Links</h3>
+        <a href="/general">General</a> | 
+        <a href="/browse-incollege">Browse InCollege</a> | 
+        <a href="/business-solutions">Business Solutions</a> | 
+        <a href="/directories">Directories</a>
+    </div>
+    <div>
+        <h3>InCollege Important Links</h3>
+        <a href="/copyright_notice">Copyright notice</a> | 
+        <a href="/about">About</a> | 
+        <a href="/accessibility">Accessibility</a> | 
+        <a href="/user_agreement">User Agreement</a> |
+        <a href="/privacy_policy">Privacy Policy</a> |
+        <a href="/cookie_policy">Cookie policy</a> |
+        <a href="/copyright_policy">Copyright Policy</a> |
+        <a href="/brand_policy">Brand Policy</a> |
+        <a href="/guest_control">Guest Control</a> |
+        <a href="/language">Language</a> |
+
+        <!-- Add other important links here -->
+    </div>
+    <h2>Signup</h2>
+    <form action="/" method="post">
+        <input type="text" name="username" placeholder="Username" required>
+        <input type="password" name="password" placeholder="Password" required>
+        <input type="text" name="first_name" placeholder="First Name" required>
+        <input type="text" name="last_name" placeholder="Last Name" required>
+        <input type="submit" name="signup" value="Signup">
+    </form>
+    <h2>Login</h2>
+    <form action="/" method="post">
+        <input type="text" name="username" placeholder="Username" required>
+        <input type="password" name="password" placeholder="Password" required>
+        <input type="submit" name="login" value="Login">
+    </form>
+    <br>
+    <p>After graduating from college with a business degree, I was eager to start my career but struggling to "<br>
+        "land interviews. I heard about InCollege from a friend - it's an online platform that matches college "<br>
+        "students and grads with great companies and jobs. I created my profile and instantly had access to "<br>
+        "thousands of job openings at awesome companies. InCollege's matching technology suggested roles that "<br>
+        "aligned perfectly with my degree, skills, and interests."</p>
+        <p>Would you like an explanation video?</p>
+    <button onclick="playVideo()">Play Video</button>
+    <p id="videoStatus"></p>
+</body>
+</html>

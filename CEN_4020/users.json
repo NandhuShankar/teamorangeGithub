@@ -1,0 +1,18 @@
+[
+    {
+        "username": "nandhu",
+        "password": "123",
+        "first_name": "Nandhu",
+        "last_name": "Shankar",
+        "sentFriendRequests": [],
+        "friends": []
+    },
+    {
+        "username": "sb",
+        "password": "sb",
+        "first_name": "Spongebob",
+        "last_name": "Squarepants",
+        "pendingFriendRequests": [],
+        "friends": []
+    }
+]

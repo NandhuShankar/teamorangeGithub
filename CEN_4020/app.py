@@ -173,6 +173,16 @@ def user_page(username):
         pending_friend_requests = user.get('pendingFriendRequests', [])
     
     return render_template('user_page.html', username=username, pending_friend_requests=pending_friend_requests)
+
+@app.route('/profile/<username>')
+def profile(username):
+    users = read_users_from_json()
+    current_user_profile = next((u for u in users if u['username'] == username), None)
+    if current_user_profile:
+        print(current_user_profile)
+        return render_template('profile.html', **current_user_profile)
+    return 'User not found', 404
+
 @app.route('/find', methods=['GET', 'POST'])
 def find():
     if request.method == 'POST':

@@ -302,7 +302,21 @@ def index():
                 "username": username,
                 "password": password,  # Consider hashing this password
                 "first_name": first_name,
-                "last_name": last_name
+                "last_name": last_name,
+                "profile_made": False,
+                "major": "",
+                "university": "",
+                "description": "",
+                "experience":
+                {
+                    "title": "",
+                    "employer": "",
+                    "location": "",
+                    "start_date": "",
+                    "end_date": "",
+                    "description": ""
+                },
+                "education": "",
                 })
 
                 write_users_to_json(users)

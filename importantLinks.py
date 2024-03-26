@@ -2,7 +2,7 @@ import settings
 
 
 def printCopyrightNotice():
-    print("Copyright © InCollege, 2023. All rights reserved.")
+    print("Copyright © InCollege, 2024. All rights reserved.")
     print("Contents of InCollege, including but not limited to, "
           "text content, logos, brand names, images, video, and "
           "other media are the property of InCollege and are protected by copyright.")
@@ -19,7 +19,7 @@ def printAccessibility():
 
 def printUserAgreement():
     print("InCollege User Agreement")
-    print("Last revised: Feb 16, 2023")
+    print("Last revised: Feb 16, 2024")
     print("This User Agreement and your conduct make sure to follow the guidelines.")
     print("1. You agree to only use the platform for legal purposes.")
     print("2. You agree to not use the platform to harm others.")
@@ -27,21 +27,21 @@ def printUserAgreement():
 
 def printPrivacyPolicy():
     print("InCollege Privacy Policy")
-    print("Last revised: Feb 16, 2023")
+    print("Last revised: Feb 16, 2024")
     print("This Privacy Policy describes how your information is collected, used, and shared when you use InCollege.")
     print("1. We only collect the information you choose to give us, and we process it with your consent, or on another legal basis.")
     print("2. We only require the minimum amount of personal information necessary to fulfill the purpose of your interaction with us.")
 
 def printCookiePolicy():
     print("InCollege Cookie Policy")
-    print("Last revised: Feb 16, 2023")
+    print("Last revised: Feb 16, 2024")
     print("This Cookie Policy describes how InCollege uses cookies and similar technologies to provide, improve, promote, and protect the InCollege Services.")
     print("1. We use cookies to help personalize your InCollege experience.")
     print("2. We use cookies to understand how you use InCollege.")
 
 def printBrandPolicy():
     print("InCollege Brand Policy")
-    print("Last revised: Feb 16, 2023")
+    print("Last revised: Feb 16, 2024")
     print("This Brand Policy describes how you can and cannot use InCollege’s brand assets.")
     print("1. You may use the InCollege brand assets when you are promoting your InCollege profile.")
 

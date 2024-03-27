@@ -1,13 +1,15 @@
 from flask import Flask, request, redirect, render_template, flash, url_for, session
+from flask_socketio import join_room, leave_room, send, SocketIO
+from string import ascii_letters, digits, ascii_lowercase, ascii_uppercase
 import json
 import os
 import re
 app = Flask(__name__)
-app.secret_key = 'your_secret_key'  # Needed for flashing messages
-
+app.secret_key = 'my_secret_key'  # Needed for flashing messages
+socketio = SocketIO(app)
 USERS_FILE = 'users.json'
 JOBS_FILE = 'jobs.json'
-
+MSG_FILE = 'messages.json'
 @app.route('/general')
 def general():
     return render_template('general.html')
@@ -156,6 +158,8 @@ def accept_friend_request():
 
         # Save the updated users back to JSON
         write_users_to_json(users)
+        # update message.json to include the new friend
+
         
         flash('Friend request accepted!', 'success')
     else:
@@ -249,8 +253,15 @@ def show_my_network(username):
         friends = user.get('friends', [])
     else:
         friends = []
-
     return render_template('show_my_network.html', username=username, friends=friends)
+
+@app.route('/message-friend', methods=['POST'])
+def message_friend():
+    sender = request.form['username']
+    receiver = request.form['friend_username']
+
+    return render_template('message_friend.html', sender=sender, receiver=receiver)
+
 @app.route('/disconnect-friend', methods=['POST'])
 def disconnect_friend():
     friend_username = request.form['friend_username']
@@ -311,4 +322,4 @@ def index():
     return render_template('login.html')
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    socketio.run(app, debug=True)

@@ -16,6 +16,11 @@
                         <input type="hidden" name="username" value="{{ username }}">
                         <input type="submit" value="Disconnect">
                     </form>
+                    <form action="/message-friend" method="post">
+                        <input type="hidden" name="friend_username" value="{{ friend }}">
+                        <input type="hidden" name="username" value="{{ username }}">
+                        <input type="submit" value="Message">
+                    </form>
                 </li>
             {% endfor %}
         </ul>

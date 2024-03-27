@@ -1,10 +1,76 @@
-commit 6b3be45a6aaad71a22d03977b5e2bb578b9ecb6d (origin/nandhu)
+commit a537fac920b5b8ddbd7f3ef6970a5825d97cff36
 Author: NandhuShankar <100387806+NandhuShankar@users.noreply.github.com>
-Date:   Tue Mar 19 18:13:17 2024 -0500
-    
-     updated to flask
+Date:   Tue Mar 26 21:23:17 2024 -0400
 
-commit 7400ed1f2e1a22c1ada4cc30a90146e2ad0f9de7 (origin/nandhu)
+    Add files via upload
+
+commit 5b2851a381e31910a4918192973127b64be6721f
+Merge: d9dbb59 4851294
+Author: NandhuShankar <100387806+NandhuShankar@users.noreply.github.com>
+Date:   Tue Mar 26 18:10:09 2024 -0400
+
+    Merge pull request #9 from NandhuShankar/flask_update
+    
+    Updated the copyright policy and notice
+
+commit 485129451fb57eb80006cd8da043af20a0df2b90
+Author: A1iPa1 <alpalmer@usf.edu>
+Date:   Tue Mar 26 15:27:16 2024 -0400
+
+    Updated the copyright policy and notice
+
+commit d9dbb5909ca0071cb00ce47aa5bca38537da78e2
+Merge: 71b53db 384ae88
+Author: A1iPa1 <88981494+A1iPa1@users.noreply.github.com>
+Date:   Tue Mar 26 10:21:20 2024 -0400
+
+    Merge pull request #8 from NandhuShankar/flask_update
+    
+    Updated the important links
+
+commit 384ae88c5e62262b8c2eaec2a1ed6711acac2a88
+Author: A1iPa1 <alpalmer@usf.edu>
+Date:   Tue Mar 26 10:18:53 2024 -0400
+
+    Updated the important links
+
+commit 71b53db806faac3aa44d197d69378c12e0f9ceda
+Author: NandhuShankar <100387806+NandhuShankar@users.noreply.github.com>
+Date:   Tue Mar 19 22:33:55 2024 -0400
+
+    Update history.txt
+
+commit 4ffabf4bf98eb5df5a6ea880ce705acfa6b91f62
+Merge: 5b766f5 789c448
+Author: NandhuShankar <100387806+NandhuShankar@users.noreply.github.com>
+Date:   Tue Mar 19 22:26:30 2024 -0400
+
+    Merge pull request #7 from NandhuShankar/flask_update
+    
+    updated to flask
+
+commit 789c448eb5afec2b437dbb58403d21ac18ba649a
+Author: NandhuShankar <100387806+NandhuShankar@users.noreply.github.com>
+Date:   Mon Mar 18 22:08:53 2024 -0400
+
+    Add files via upload
+
+commit 5b766f5a4e5e44d1a2136cfbf47348a7c07faad5
+Author: YingJames <jamesy148@usf.edu>
+Date:   Tue Mar 5 21:02:02 2024 -0500
+
+    add history.txt
+
+commit 0e1543e3034edf7e260b9c6150cdff11e780908f
+Merge: 3229db0 7400ed1
+Author: NandhuShankar <100387806+NandhuShankar@users.noreply.github.com>
+Date:   Tue Mar 5 14:41:17 2024 -0500
+
+    Merge pull request #6 from NandhuShankar/nandhu
+    
+    added 3 options for descriptions
+
+commit 7400ed1f2e1a22c1ada4cc30a90146e2ad0f9de7
 Author: NandhuShankar <100387806+NandhuShankar@users.noreply.github.com>
 Date:   Tue Mar 5 14:40:46 2024 -0500
 
@@ -16,7 +82,7 @@ Date:   Mon Mar 4 15:02:56 2024 -0500
 
     add profile editing
 
-commit 2aec04489c64f1d20886701495566c2357d893a6 (tag: 02_27_2024Orange)
+commit 2aec04489c64f1d20886701495566c2357d893a6
 Author: YingJames <jamesy148@usf.edu>
 Date:   Tue Feb 27 16:04:07 2024 -0500
 
@@ -46,7 +112,7 @@ Date:   Tue Feb 27 15:58:20 2024 -0500
 
     expand the max users from 5 to 10
 
-commit 00f56591673536f0f4fb31f5541dd22910d677d5 (origin/feature/james, feature/james)
+commit 00f56591673536f0f4fb31f5541dd22910d677d5
 Author: YingJames <jamesy148@usf.edu>
 Date:   Mon Feb 19 13:26:55 2024 -0500
 
@@ -125,7 +191,7 @@ Date:   Sat Feb 10 15:58:43 2024 -0500
 
     Merge branch 'job_post_feature/james'
 
-commit 6b3be45a6aaad71a22d03977b5e2bb578b9ecb6d (origin/job_post_feature/james)
+commit 6b3be45a6aaad71a22d03977b5e2bb578b9ecb6d
 Merge: 671f290 70e2b16
 Author: jamesy <jyab0617@gmail.com>
 Date:   Sat Feb 10 15:57:35 2024 -0500

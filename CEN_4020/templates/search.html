@@ -6,6 +6,17 @@
 </head>
 <body>
     <h2>Job Search/Internship</h2>
+    {% for job in jobs %}
+        <h3>Title: {{ job.title }}</h3>
+        <ul>
+            <li>Description: {{ job.description }}</li>
+            <li>Employer: {{ job.employer }}</li>
+            <li>Location: {{ job.location }}</li>
+            <li>Salary: {{ job.salary }}</li>
+            <li>Posted by: {{ job.poster }}</li>
+            <!-- More job details here -->
+        </ul>
+    {% endfor %}
     <h3>Post a Job</h3>
     <form action="/search" method="post">
         <input type="text" name="title" placeholder="Title" required><br>

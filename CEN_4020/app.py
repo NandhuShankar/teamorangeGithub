@@ -252,6 +252,7 @@ def learn():
 
 @app.route('/search', methods=['GET', 'POST'])
 def search():
+    jobs = read_jobs_from_json()
     if request.method == 'POST':
         # Collect job details from the form
         job = {
@@ -268,7 +269,7 @@ def search():
         write_jobs_to_json(jobs)
         flash('Job posted successfully!', 'success')
         return redirect('/search')  # Prevents form re-submission on refresh
-    return render_template('search.html')
+    return render_template('search.html', jobs=jobs)
 @app.route('/logout')
 def logout():
     session.pop('username', None)

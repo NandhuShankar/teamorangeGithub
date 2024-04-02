@@ -20,7 +20,11 @@
     <li>end date: {{ experience.end_date }}</li>
     <li>description: {{ experience.description }}</li>
 </ul>
-<a href="/edit_profile_form">Edit Profile</a>
-<a href="/user/{{ username }}">Go back</a>
+{% if current_user == username %}
+    <a href="/edit_profile_form">Edit Profile</a>
+    <a href="/user/{{ username }}">Go back</a>
+{% else %}
+    <a href="/show-my-network/{{ current_user }}">Go back</a>
+{% endif %}
 </body>
 </html>

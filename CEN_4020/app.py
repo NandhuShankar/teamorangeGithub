@@ -176,10 +176,13 @@ def user_page(username):
 
 @app.route('/profile/<username>')
 def profile(username):
+    current_user = session.get('username')
+    print(f"Current user: {current_user}")
+
     users = read_users_from_json()
-    current_user_profile = next((u for u in users if u['username'] == username), None)
-    if current_user_profile:
-        return render_template('profile.html', **current_user_profile)
+    user_profile = next((u for u in users if u['username'] == username), None)
+    if user_profile:
+        return render_template('profile.html', **user_profile, current_user=current_user)
     return 'User not found', 404
 
 @app.route('/edit_profile_form', methods=['GET', 'POST'])

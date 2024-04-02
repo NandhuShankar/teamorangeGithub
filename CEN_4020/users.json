@@ -36,6 +36,33 @@
             "end_date": "2024",
             "description": "sells krabby patties"
         },
-        "education": "AA"
+        "education": "AA",
+        "pendingFriendRequests": [],
+        "friends": [
+            "pat"
+        ]
+    },
+    {
+        "username": "pat",
+        "password": "pat",
+        "first_name": "Patrick",
+        "last_name": "Star",
+        "profile_made": false,
+        "major": "",
+        "university": "",
+        "description": "",
+        "experience": {
+            "title": "",
+            "employer": "",
+            "location": "",
+            "start_date": "",
+            "end_date": "",
+            "description": ""
+        },
+        "education": "",
+        "sentFriendRequests": [],
+        "friends": [
+            "Squash"
+        ]
     }
 ]

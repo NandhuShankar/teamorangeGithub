@@ -261,7 +261,8 @@ def search():
             "employer": request.form['employer'],
             "location": request.form['location'],
             "salary": request.form['salary'],
-            "poster": session.get('username')  # Assumes username is stored in session
+            "poster": session.get('username'),  # Assumes username is stored in session
+            "applicants": []
         }
         # Read current jobs, add the new job, and write back to the JSON file
         jobs = read_jobs_from_json()
@@ -270,6 +271,23 @@ def search():
         flash('Job posted successfully!', 'success')
         return redirect('/search')  # Prevents form re-submission on refresh
     return render_template('search.html', jobs=jobs)
+@app.route('/apply_job/', methods=['GET','POST'])
+def apply_job():
+    if request.method == 'POST':
+        job_id = int(request.form['job_id'])
+        jobs = read_jobs_from_json()
+        job = jobs[job_id]
+        job['applicants'] = job.get('applicants', [])
+        job['applicants'].append(session.get('username'))
+    if request.method == 'GET':
+        # get the job item using job title
+        job_title = request.args.get('job_title')
+        jobs = read_jobs_from_json()
+        job = next((job for job in jobs if job['title'] == job_title), None)
+        if job:
+            return render_template('apply_job.html', job=job)
+    # return render_template('apply_job.html')
+
 @app.route('/logout')
 def logout():
     session.pop('username', None)

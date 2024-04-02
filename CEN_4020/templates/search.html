@@ -16,6 +16,10 @@
             <li>Posted by: {{ job.poster }}</li>
             <!-- More job details here -->
         </ul>
+        <form action="/apply_job" method="get">
+            <input type="hidden" name="job_title" value="{{ job.title }}">
+            <input type="submit" value="Apply">
+        </form>
     {% endfor %}
     <h3>Post a Job</h3>
     <form action="/search" method="post">

@@ -5,7 +5,9 @@
         "first_name": "Nandhu",
         "last_name": "Shankar",
         "sentFriendRequests": [],
-        "friends": []
+        "friends": [
+            "sb"
+        ]
     },
     {
         "username": "sb",
@@ -13,6 +15,27 @@
         "first_name": "Spongebob",
         "last_name": "Squarepants",
         "pendingFriendRequests": [],
-        "friends": []
+        "friends": [
+            "nandhu"
+        ]
+    },
+    {
+        "username": "Squash",
+        "password": "asdf",
+        "first_name": "Spongebob",
+        "last_name": "Squarepants",
+        "profile_made": true,
+        "major": "Comp sci",
+        "university": "USF",
+        "description": "What a good description",
+        "experience": {
+            "title": "test title",
+            "employer": "Krusty Krab",
+            "location": "Under the sea",
+            "start_date": "idk 1999",
+            "end_date": "2024",
+            "description": "sells krabby patties"
+        },
+        "education": "AA"
     }
 ]

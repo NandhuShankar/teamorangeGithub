@@ -179,9 +179,54 @@ def profile(username):
     users = read_users_from_json()
     current_user_profile = next((u for u in users if u['username'] == username), None)
     if current_user_profile:
-        print(current_user_profile)
         return render_template('profile.html', **current_user_profile)
     return 'User not found', 404
+
+@app.route('/edit_profile_form', methods=['GET', 'POST'])
+def edit_profile_form():
+    username = session.get('username')
+    # if not username:
+        # return redirect(url_for('index'))
+    users = read_users_from_json()
+    user = next((u for u in users if u['username'] == username), None)
+    user_index = users.index(user)  # Get the index of the user
+    # if input is not empty
+    if request.method == 'POST':
+        user['profile_made'] = True
+        if request.form['first_name']:
+            user['first_name'] = request.form['first_name']
+        if request.form['last_name']:
+            user['last_name'] = request.form['last_name']
+        if request.form['major']:
+            user['major'] = request.form['major']
+        if request.form['university']:
+            user['university'] = request.form['university']
+        if request.form['description']:
+            user['description'] = request.form['description']
+        if request.form['education']:
+            user['education'] = request.form['education']
+
+        # experience section
+        if request.form['experience_title']:
+            user['experience']['title'] = request.form['experience_title']
+        if request.form['experience_employer']:
+            user['experience']['employer'] = request.form['experience_employer']
+        if request.form['experience_location']:
+            user['experience']['location'] = request.form['experience_location']
+        if request.form['experience_start_date']:
+            user['experience']['start_date'] = request.form['experience_start_date']
+        if request.form['experience_end_date']:
+            user['experience']['end_date'] = request.form['experience_end_date']
+        if request.form['experience_description']:
+            user['experience']['description'] = request.form['experience_description']
+        users[user_index] = user  # Replace the old user data with the updated user data
+        with open('users.json', 'w') as f:  # Open the JSON file in write mode
+            json.dump(users, f, indent=4)  # Write the updated data back to the JSON file
+        # user['education'] = request.form['education']
+        # write_users_to_json(users)
+        # flash('Profile updated successfully!', 'success')
+        # return redirect(url_for('user_page', username=username))
+    return render_template('edit_profile_form.html', **user)
 
 @app.route('/find', methods=['GET', 'POST'])
 def find():

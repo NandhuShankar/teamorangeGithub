@@ -7,15 +7,21 @@
 <body>
     <h2>Job Search/Internship</h2>
     {% for job in jobs %}
-        <h3>Title: {{ job.title }}</h3>
-        <ul>
-            <li>Description: {{ job.description }}</li>
-            <li>Employer: {{ job.employer }}</li>
-            <li>Location: {{ job.location }}</li>
-            <li>Salary: {{ job.salary }}</li>
-            <li>Posted by: {{ job.poster }}</li>
-            <!-- More job details here -->
-        </ul>
+        {% if job.poster != session['username'] %}
+            <h3>Title: {{ job.title }}</h3>
+            <ul>
+                <li>Description: {{ job.description }}</li>
+                <li>Employer: {{ job.employer }}</li>
+                <li>Location: {{ job.location }}</li>
+                <li>Salary: {{ job.salary }}</li>
+                <li>Posted by: {{ job.poster }}</li>
+                <!-- More job details here -->
+            </ul>
+            <form action="/apply_job" method="get">
+                <input type="hidden" name="job_title" value="{{ job.title }}">
+                <input type="submit" value="Apply">
+            </form>
+        {% endif %}
     {% endfor %}
     <h3>Post a Job</h3>
     <form action="/search" method="post">

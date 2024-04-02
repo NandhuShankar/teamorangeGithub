@@ -261,7 +261,8 @@ def search():
             "employer": request.form['employer'],
             "location": request.form['location'],
             "salary": request.form['salary'],
-            "poster": session.get('username')  # Assumes username is stored in session
+            "poster": session.get('username'),  # Assumes username is stored in session
+            "applications": []
         }
         # Read current jobs, add the new job, and write back to the JSON file
         jobs = read_jobs_from_json()
@@ -270,6 +271,45 @@ def search():
         flash('Job posted successfully!', 'success')
         return redirect('/search')  # Prevents form re-submission on refresh
     return render_template('search.html', jobs=jobs)
+@app.route('/apply_job/', methods=['GET','POST'])
+def apply_job():
+    if request.method == 'POST':
+        # get job title from url
+        job_title = request.form['job_info']
+        jobs = read_jobs_from_json()
+        job = next((job for job in jobs if job['title'] == job_title), None)
+
+        application = {
+            "applicant": session.get('username'),
+            "grad_date": request.form['grad_date'],
+            "date_available": request.form['date_available'],
+            "why_fit": request.form['why_fit'],
+        }
+        # append application to specific job in jobs
+        job['applications'] = job.get('applications', [])
+        job['applications'].append(application)
+        write_jobs_to_json(jobs)
+
+        # save applied jobs to user
+        users = read_users_from_json()
+        user = next((u for u in users if u['username'] == session.get('username')), None)
+        user['applied_jobs'] = user.get('applied_jobs', [])
+        user['applied_jobs'].append(job_title)
+        write_users_to_json(users)
+
+
+        # go back to the job search page
+        render_template('search.html', jobs=jobs)
+
+    if request.method == 'GET':
+        # get the job item using job title
+        job_title = request.args.get('job_title')
+        jobs = read_jobs_from_json()
+        job = next((job for job in jobs if job['title'] == job_title), None)
+        if job:
+            return render_template('apply_job.html', job=job)
+    # return render_template('apply_job.html')
+
 @app.route('/logout')
 def logout():
     session.pop('username', None)
@@ -366,6 +406,7 @@ def index():
                     "description": ""
                 },
                 "education": "",
+                "applied_jobs": [],
                 })
 
                 write_users_to_json(users)

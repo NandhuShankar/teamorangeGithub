@@ -5,6 +5,23 @@
         "employer": "Apple",
         "location": "Remote",
         "salary": "0/hr",
-        "poster": "nandhu"
+        "poster": "nandhu",
+        "applications": [
+            {
+                "applicant": "pat",
+                "grad_date": "1111-11-11",
+                "date_available": "2222-02-22",
+                "why_fit": "Because i am better"
+            }
+        ]
+    },
+    {
+        "title": "Fry Cook",
+        "description": "nice desc",
+        "employer": "Krusty Krab",
+        "location": "bikini bottom",
+        "salary": "$0.50",
+        "poster": "pat",
+        "applications": []
     }
-]  
+]

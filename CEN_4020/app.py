@@ -2,82 +2,103 @@ from flask import Flask, request, redirect, render_template, flash, url_for, ses
 import json
 import os
 import re
+
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'  # Needed for flashing messages
 
 USERS_FILE = 'users.json'
 JOBS_FILE = 'jobs.json'
 
+
 @app.route('/general')
 def general():
     return render_template('general.html')
+
 
 @app.route('/about')
 def about():
     return render_template('about.html')
 
+
 @app.route('/accessibility')
 def accessibility():
     return render_template('accessibility.html')
 
+
 @app.route('/blog')
 def blog():
     return render_template('blog.html')
+
+
 @app.route('/brand_policy')
 def brand_policy():
     return render_template('brand_policy.html')
+
 
 @app.route('/browse-incollege')
 def browse_incollege():
     return render_template('browse-incollege.html')
 
+
 @app.route('/business-solutions')
 def business_solutions():
     return render_template('business-solutions.html')
+
 
 @app.route('/career')
 def career():
     return render_template('career.html')
 
+
 @app.route('/cookie_policy')
 def cookie_policy():
     return render_template('cookie_policy.html')
+
 
 @app.route('/copyright_notice')
 def copyright_notice():
     return render_template('copyright_notice.html')
 
+
 @app.route('/copyright_policy')
 def copyright_policy():
     return render_template('copyright_policy.html')
+
 
 @app.route('/developer')
 def developer():
     return render_template('developer.html')
 
+
 @app.route('/directories')
 def directory():
     return render_template('directories.html')
+
 
 @app.route('/guest_control')
 def guest_control():
     return render_template('guest_control.html')
 
+
 @app.route('/language')
 def language():
     return render_template('language.html')
+
 
 @app.route('/press')
 def press():
     return render_template('press.html')
 
+
 @app.route('/privacy_policy')
 def privacy_policy():
     return render_template('privacy_policy.html')
 
+
 @app.route('/user_agreement')
 def user_agreement():
     return render_template('user_agreement.html')
+
 
 def read_jobs_from_json():
     if not os.path.exists(JOBS_FILE):
@@ -85,25 +106,32 @@ def read_jobs_from_json():
     with open(JOBS_FILE, 'r') as file:
         return json.load(file)
 
+
 def write_jobs_to_json(jobs):
     with open(JOBS_FILE, 'w') as file:
         json.dump(jobs, file, indent=4)
+
+
 def read_users_from_json():
     if not os.path.exists(USERS_FILE):
         return []
     with open(USERS_FILE, 'r') as file:
         return json.load(file)
 
+
 def write_users_to_json(users):
     with open(USERS_FILE, 'w') as file:
         json.dump(users, file, indent=4)
+
 
 def find_user_by_username(username):
     users = read_users_from_json()
     for user in users:
         if user['username'] == username:
             return user
-    return 
+    return
+
+
 def add_friend_request(sender_username, receiver_username):
     students = read_users_from_json()  # Load the current list of users
 
@@ -117,7 +145,7 @@ def add_friend_request(sender_username, receiver_username):
             receiver['pendingFriendRequests'] = []
         if sender_username not in receiver['pendingFriendRequests']:
             receiver['pendingFriendRequests'].append(sender_username)
-        
+
         # Update the sender's sentFriendRequests list
         if 'sentFriendRequests' not in sender:
             sender['sentFriendRequests'] = []
@@ -126,22 +154,24 @@ def add_friend_request(sender_username, receiver_username):
 
         # Save the updated data back to the JSON file
         write_users_to_json(students)
+
+
 @app.route('/accept-friend-request', methods=['POST'])
 def accept_friend_request():
     from_username = request.form['from_username']
     to_username = request.form['to_username']
 
     users = read_users_from_json()  # Assume this function reads your JSON data
-    
+
     # Finding the sender and receiver in the users list
     from_user = next((user for user in users if user['username'] == from_username), None)
     to_user = next((user for user in users if user['username'] == to_username), None)
-    
+
     if from_user and to_user:
         # Update the receiver's data
         if 'pendingFriendRequests' in to_user and from_username in to_user['pendingFriendRequests']:
             to_user['pendingFriendRequests'].remove(from_username)
-        
+
         if 'friends' not in to_user:
             to_user['friends'] = []
         to_user['friends'].append(from_username)
@@ -149,19 +179,21 @@ def accept_friend_request():
         # Update the sender's data
         if 'sentFriendRequests' in from_user and to_username in from_user['sentFriendRequests']:
             from_user['sentFriendRequests'].remove(to_username)
-        
+
         if 'friends' not in from_user:
             from_user['friends'] = []
         from_user['friends'].append(to_username)
 
         # Save the updated users back to JSON
         write_users_to_json(users)
-        
+
         flash('Friend request accepted!', 'success')
     else:
         flash('An error occurred.', 'error')
-    
+
     return redirect(url_for('user_page', username=to_username))
+
+
 @app.route('/user/<username>')
 def user_page(username):
     users = read_users_from_json()  # Load users from your JSON file
@@ -171,8 +203,9 @@ def user_page(username):
     if user:
         # Get the list of usernames who have sent a friend request to this user
         pending_friend_requests = user.get('pendingFriendRequests', [])
-    
+
     return render_template('user_page.html', username=username, pending_friend_requests=pending_friend_requests)
+
 
 @app.route('/profile/<username>')
 def profile(username):
@@ -185,11 +218,12 @@ def profile(username):
         return render_template('profile.html', **user_profile, current_user=current_user)
     return 'User not found', 404
 
+
 @app.route('/edit_profile_form', methods=['GET', 'POST'])
 def edit_profile_form():
     username = session.get('username')
     # if not username:
-        # return redirect(url_for('index'))
+    # return redirect(url_for('index'))
     users = read_users_from_json()
     user = next((u for u in users if u['username'] == username), None)
     user_index = users.index(user)  # Get the index of the user
@@ -231,6 +265,7 @@ def edit_profile_form():
         # return redirect(url_for('user_page', username=username))
     return render_template('edit_profile_form.html', **user)
 
+
 @app.route('/find', methods=['GET', 'POST'])
 def find():
     if request.method == 'POST':
@@ -243,12 +278,14 @@ def find():
         return render_template('find.html', message="They are not yet a part of the InCollege system yet.")
     return render_template('find.html')
 
+
 @app.route('/learn')
 def learn():
     username = session.get('username')
     if not username:
         return redirect(url_for('index'))
     return render_template('learn.html', username=username)
+
 
 @app.route('/search', methods=['GET', 'POST'])
 def search():
@@ -278,11 +315,10 @@ def search():
         not_applied_jobs = [job for job in jobs if job['title'] not in user['applied_jobs']]
         # return render_template('search.html', jobs=jobs, current_user=session.get('username'))
 
-
         return render_template('search.html', jobs=jobs, applied_jobs=applied_jobs, not_applied_jobs=not_applied_jobs)
 
 
-@app.route('/apply_job/', methods=['GET','POST'])
+@app.route('/apply_job/', methods=['GET', 'POST'])
 def apply_job():
     if request.method == 'POST':
         # get job title from url
@@ -328,12 +364,15 @@ def apply_job():
     return render_template('search.html', jobs=jobs, applied_jobs=applied_jobs, not_applied_jobs=not_applied_jobs)
     # return render_template('apply_job.html')
 
+
 @app.route('/logout')
 def logout():
     session.pop('username', None)
     session.clear()
     return redirect(url_for('index'))
-@app.route('/search-students' , methods=['GET', 'POST'])
+
+
+@app.route('/search-students', methods=['GET', 'POST'])
 def search_students():
     search_results = None
     not_found_message = None
@@ -341,23 +380,27 @@ def search_students():
         search_term = request.form['search_term'].lower()
         students = read_users_from_json()  # Assume this function reads your JSON data into a Python list
         # Filter students based on the search term
-        search_results = [student for student in students if search_term in student.get('last_name', '').lower() or 
-                  search_term in student.get('university', '').lower() or search_term in student.get('major', '').lower()]
+        search_results = [student for student in students if search_term in student.get('last_name', '').lower() or
+                          search_term in student.get('university', '').lower() or search_term in student.get('major',
+                                                                                                             '').lower()]
         if not search_results:
             not_found_message = 'No students found matching the search term'
 
     return render_template('search-students.html', search_results=search_results, not_found_message=not_found_message)
 
+
 @app.route('/send-friend-request', methods=['POST'])
 def send_friend_request():
     receiver_username = request.form['username']
     sender_username = session.get('username')  # Assuming the current user's username is stored in the session
-    
+
     # Assume you have a function that updates the JSON data with the friend request
     add_friend_request(sender_username, receiver_username)
-    
+
     flash('Friend request sent successfully!')
     return redirect('/search-students')
+
+
 @app.route('/show-my-network/<username>')
 def show_my_network(username):
     users = read_users_from_json()
@@ -368,6 +411,8 @@ def show_my_network(username):
         friends = []
 
     return render_template('show_my_network.html', username=username, friends=friends)
+
+
 @app.route('/disconnect-friend', methods=['POST'])
 def disconnect_friend():
     friend_username = request.form['friend_username']
@@ -395,6 +440,8 @@ def disconnect_friend():
 
     # Redirect back to the Show My Network page
     return redirect(url_for('show_my_network', username=username))
+
+
 @app.route('/', methods=['GET', 'POST'])
 def index():
     if request.method == 'POST':
@@ -406,25 +453,25 @@ def index():
             users = read_users_from_json()
             if not find_user_by_username(username):
                 users.append({
-                "username": username,
-                "password": password,  # Consider hashing this password
-                "first_name": first_name,
-                "last_name": last_name,
-                "profile_made": False,
-                "major": "",
-                "university": "",
-                "description": "",
-                "experience":
-                {
-                    "title": "",
-                    "employer": "",
-                    "location": "",
-                    "start_date": "",
-                    "end_date": "",
-                    "description": ""
-                },
-                "education": "",
-                "applied_jobs": [],
+                    "username": username,
+                    "password": password,  # Consider hashing this password
+                    "first_name": first_name,
+                    "last_name": last_name,
+                    "profile_made": False,
+                    "major": "",
+                    "university": "",
+                    "description": "",
+                    "experience":
+                        {
+                            "title": "",
+                            "employer": "",
+                            "location": "",
+                            "start_date": "",
+                            "end_date": "",
+                            "description": ""
+                        },
+                    "education": "",
+                    "applied_jobs": [],
                 })
 
                 write_users_to_json(users)
@@ -441,6 +488,7 @@ def index():
             else:
                 flash('Incorrect username or password!', 'error')
     return render_template('login.html')
+
 
 if __name__ == '__main__':
     app.run(debug=True)

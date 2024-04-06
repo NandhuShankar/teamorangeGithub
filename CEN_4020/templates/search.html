@@ -6,8 +6,7 @@
 </head>
 <body>
     <h2>Job Search/Internship</h2>
-    {% for job in jobs %}
-        {% if job.poster != session['username'] %}
+    {% for job in not_applied_jobs %}
             <h3>Title: {{ job.title }}</h3>
             <ul>
                 <li>Description: {{ job.description }}</li>
@@ -21,17 +20,31 @@
                 <input type="hidden" name="job_title" value="{{ job.title }}">
                 <input type="submit" value="Apply">
             </form>
-        {% endif %}
     {% endfor %}
-    <h3>Post a Job</h3>
-    <form action="/search" method="post">
-        <input type="text" name="title" placeholder="Title" required><br>
-        <input type="text" name="description" placeholder="Description" required><br>
-        <input type="text" name="employer" placeholder="Employer" required><br>
-        <input type="text" name="location" placeholder="Location" required><br>
-        <input type="text" name="salary" placeholder="Salary" required><br>
-        <input type="submit" value="Post Job">
-    </form>
+    <h2>Applied Jobs</h2>
+    {% for job in applied_jobs %}
+            <h3>Title: {{ job.title }}</h3>
+            <ul>
+                <li>Description: {{ job.description }}</li>
+                <li>Employer: {{ job.employer }}</li>
+                <li>Location: {{ job.location }}</li>
+                <li>Salary: {{ job.salary }}</li>
+                <li>Posted by: {{ job.poster }}</li>
+                <!-- More job details here -->
+            </ul>
+    {% endfor %}
+
+    {% if jobs|length < 10 %}
+        <h3>Post a Job</h3>
+        <form action="/search" method="post">
+            <input type="text" name="title" placeholder="Title" required><br>
+            <input type="text" name="description" placeholder="Description" required><br>
+            <input type="text" name="employer" placeholder="Employer" required><br>
+            <input type="text" name="location" placeholder="Location" required><br>
+            <input type="text" name="salary" placeholder="Salary" required><br>
+            <input type="submit" value="Post Job">
+        </form>
+    {% endif %}
     <a href="/user/{{ session['username'] }}">Back to Profile</a>
 </body>
 </html>

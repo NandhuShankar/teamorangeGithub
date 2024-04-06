@@ -265,12 +265,23 @@ def search():
             "applications": []
         }
         # Read current jobs, add the new job, and write back to the JSON file
+        user = find_user_by_username(session.get('username'))
         jobs = read_jobs_from_json()
         jobs.append(job)
         write_jobs_to_json(jobs)
         flash('Job posted successfully!', 'success')
         return redirect('/search')  # Prevents form re-submission on refresh
-    return render_template('search.html', jobs=jobs)
+    if request.method == 'GET':
+        user = find_user_by_username(session.get('username'))
+        jobs = read_jobs_from_json()
+        applied_jobs = [job for job in jobs if job['title'] in user['applied_jobs']]
+        not_applied_jobs = [job for job in jobs if job['title'] not in user['applied_jobs']]
+        # return render_template('search.html', jobs=jobs, current_user=session.get('username'))
+
+
+        return render_template('search.html', jobs=jobs, applied_jobs=applied_jobs, not_applied_jobs=not_applied_jobs)
+
+
 @app.route('/apply_job/', methods=['GET','POST'])
 def apply_job():
     if request.method == 'POST':
@@ -292,7 +303,7 @@ def apply_job():
 
         # save applied jobs to user
         users = read_users_from_json()
-        user = next((u for u in users if u['username'] == session.get('username')), None)
+        user = find_user_by_username(session.get('username'))
         user['applied_jobs'] = user.get('applied_jobs', [])
         user['applied_jobs'].append(job_title)
         write_users_to_json(users)
@@ -308,8 +319,13 @@ def apply_job():
         job = next((job for job in jobs if job['title'] == job_title), None)
         if job:
             return render_template('apply_job.html', job=job)
+
+    user = find_user_by_username(session.get('username'))
     jobs = read_jobs_from_json()
-    render_template('search.html', jobs=jobs)
+    applied_jobs = [job for job in jobs if job['title'] in user['applied_jobs']]
+    not_applied_jobs = [job for job in jobs if job['title'] not in user['applied_jobs']]
+
+    return render_template('search.html', jobs=jobs, applied_jobs=applied_jobs, not_applied_jobs=not_applied_jobs)
     # return render_template('apply_job.html')
 
 @app.route('/logout')

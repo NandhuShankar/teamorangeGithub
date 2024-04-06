@@ -296,10 +296,10 @@ def apply_job():
         user['applied_jobs'] = user.get('applied_jobs', [])
         user['applied_jobs'].append(job_title)
         write_users_to_json(users)
-
+        return redirect('/search')
 
         # go back to the job search page
-        render_template('search.html', jobs=jobs)
+        # render_template('search.html', jobs=jobs)
 
     if request.method == 'GET':
         # get the job item using job title
@@ -308,6 +308,8 @@ def apply_job():
         job = next((job for job in jobs if job['title'] == job_title), None)
         if job:
             return render_template('apply_job.html', job=job)
+    jobs = read_jobs_from_json()
+    render_template('search.html', jobs=jobs)
     # return render_template('apply_job.html')
 
 @app.route('/logout')

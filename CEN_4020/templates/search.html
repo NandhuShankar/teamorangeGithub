@@ -28,6 +28,10 @@
                     <input type="submit" value="Apply">
                 </form>
             {% else %}
+                <form action="/delete_job" method="post">
+                    <input type="hidden" name="job_title" value="{{ job.title }}">
+                    <input type="submit" value="Delete">
+                </form>
                 <p>Cannot apply to your own posted job</p>
             {% endif %}
 
@@ -55,6 +59,14 @@
                 <li>Posted by: {{ job.poster }}</li>
                 <!-- More job details here -->
             </ul>
+            {% if job.poster == session['username'] %}
+                <form action="/delete_job" method="post">
+                    <input type="hidden" name="job_title" value="{{ job.title }}">
+                    <input type="submit" value="Delete">
+                </form>
+            {% else %}
+                <p>Cannot apply to your own posted job</p>
+            {% endif %}
     {% endfor %}
 
     {% if jobs|length < 10 %}

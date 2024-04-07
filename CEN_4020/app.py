@@ -132,6 +132,18 @@ def find_user_by_username(username):
     return
 
 
+def push_notification(username, notification):
+    users = read_users_from_json()
+    user = next((u for u in users if u['username'] == username), None)
+    # if notifications key does not exist, create it
+    if 'notifications' not in user:
+        user['notifications'] = []
+
+    user['notifications'] = user.get('notifications', [])
+    user['notifications'].append(notification)
+    write_users_to_json(users)
+
+
 def add_friend_request(sender_username, receiver_username):
     students = read_users_from_json()  # Load the current list of users
 
@@ -341,6 +353,38 @@ def save_job():
     write_users_to_json(users)
     return redirect('/search')
 
+@app.route('/delete_job', methods=['POST'])
+def delete_job():
+    if request.method == 'POST':
+        job_title = request.form['job_title']
+        jobs = read_jobs_from_json()
+        job = next((job for job in jobs if job['title'] == job_title), None)
+
+        # get all applicants
+        applicants = []
+        applicants.append(session.get('username'))
+        for application in job['applications']:
+            applicants.append(application['applicant'])
+
+        # push notification to all applicants
+        for applicant in applicants:
+            push_notification(applicant, f"Job {job_title} has been deleted by the poster.")
+
+        # remove job from every applicants saved and applied jobs
+        users = read_users_from_json()
+        for applicant in applicants:
+            user = next((u for u in users if u['username'] == applicant), None)
+            if job_title in user['saved_jobs']:
+                user['saved_jobs'].remove(job_title)
+            if job_title in user['applied_jobs']:
+                user['applied_jobs'].remove(job_title)
+            write_users_to_json(users)
+
+        # remove job from jobs
+        # jobs.remove(job)
+        # write_jobs_to_json(jobs)
+        return redirect('/search')
+
 
 @app.route('/apply_job/', methods=['GET', 'POST'])
 def apply_job():
@@ -505,6 +549,7 @@ def index():
                         },
                     "education": "",
                     "applied_jobs": [],
+                    "saved_jobs": [],
                     "notifications": []
                 })
 

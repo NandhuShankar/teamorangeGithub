@@ -381,8 +381,8 @@ def delete_job():
             write_users_to_json(users)
 
         # remove job from jobs
-        # jobs.remove(job)
-        # write_jobs_to_json(jobs)
+        jobs.remove(job)
+        write_jobs_to_json(jobs)
         return redirect('/search')
 
 

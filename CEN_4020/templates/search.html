@@ -59,6 +59,10 @@
                 <li>Posted by: {{ job.poster }}</li>
                 <!-- More job details here -->
             </ul>
+            <form action="/unsave_job" method="post">
+                <input type="hidden" name="job_title" value="{{ job.title }}">
+                <input type="submit" value="Unsave">
+            </form>
             {% if job.poster == session['username'] %}
                 <form action="/delete_job" method="post">
                     <input type="hidden" name="job_title" value="{{ job.title }}">

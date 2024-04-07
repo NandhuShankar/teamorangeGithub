@@ -350,6 +350,20 @@ def search():
                            saved_jobs=saved_jobs)
 
 
+@app.route('/unsave_job', methods=['POST'])
+def unsave_job():
+    job_title = request.form['job_title']
+    users = read_users_from_json()
+    username = session.get('username')
+    user = next((u for u in users if u['username'] == username), None)
+
+    if 'saved_jobs' not in user:
+        user['saved_jobs'] = []
+    user['saved_jobs'] = user.get('saved_jobs', [])
+    user['saved_jobs'].remove(job_title)
+    write_users_to_json(users)
+    return redirect('/search')
+
 @app.route('/save_job', methods=['POST'])
 def save_job():
     job_title = request.form['job_title']

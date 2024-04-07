@@ -19,10 +19,17 @@
             <form action="/save_job" method="post">
                 <input type="hidden" name="job_title" value="{{ job.title }}">
                 <input type="submit" value="Save">
-            <form action="/apply_job" method="get">
-                <input type="hidden" name="job_title" value="{{ job.title }}">
-                <input type="submit" value="Apply">
             </form>
+
+            <!--    Cannot apply if they are poster -->
+            {% if job.poster != session['username'] %}
+                <form action="/apply_job/" method="get">
+                    <input type="hidden" name="job_title" value="{{ job.title }}">
+                    <input type="submit" value="Apply">
+                </form>
+            {% else %}
+                <p>Cannot apply to your own posted job</p>
+            {% endif %}
 
     {% endfor %}
     <h2>Applied Jobs</h2>

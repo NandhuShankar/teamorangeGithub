@@ -315,8 +315,9 @@ def search():
 
         # saved then don't show in not applied jobs
         saved_jobs = [job for job in jobs if job['title'] in user['saved_jobs']]
-        not_applied_jobs = [job for job in jobs if job['title'] not in user['applied_jobs'] and job['title'] not in user['saved_jobs']]
-        #not_applied_jobs = [job for job in jobs if job['title'] not in user['applied_jobs']]
+        not_applied_jobs = [job for job in jobs if
+                            job['title'] not in user['applied_jobs'] and job['title'] not in user['saved_jobs']]
+        # not_applied_jobs = [job for job in jobs if job['title'] not in user['applied_jobs']]
         # return render_template('search.html', jobs=jobs, current_user=session.get('username'))
 
     return render_template('search.html',
@@ -324,6 +325,7 @@ def search():
                            applied_jobs=applied_jobs,
                            not_applied_jobs=not_applied_jobs,
                            saved_jobs=saved_jobs)
+
 
 @app.route('/save_job', methods=['POST'])
 def save_job():
@@ -338,6 +340,7 @@ def save_job():
     user['saved_jobs'].append(job_title)
     write_users_to_json(users)
     return redirect('/search')
+
 
 @app.route('/apply_job/', methods=['GET', 'POST'])
 def apply_job():
@@ -354,15 +357,19 @@ def apply_job():
             "why_fit": request.form['why_fit'],
         }
         # append application to specific job in jobs
+        if 'applications' not in job:
+            job['applications'] = []
         job['applications'] = job.get('applications', [])
         job['applications'].append(application)
         write_jobs_to_json(jobs)
 
         # save applied jobs to user
         users = read_users_from_json()
-        user = find_user_by_username(session.get('username'))
-        user['applied_jobs'] = user.get('applied_jobs', [])
-        user['applied_jobs'].append(job_title)
+        current_user = next((user for user in users if user['username'] == session.get('username')), None)
+        if 'applied_jobs' not in current_user:
+            current_user['applied_jobs'] = []
+        current_user['applied_jobs'] = current_user.get('applied_jobs', [])
+        current_user['applied_jobs'].append(job_title)
         write_users_to_json(users)
         return redirect('/search')
 
@@ -384,10 +391,10 @@ def apply_job():
     saved_jobs = [job for job in jobs if job['title'] in user['saved_jobs']]
 
     return render_template('search.html',
-        jobs=jobs,
-        applied_jobs=applied_jobs,
-        not_applied_jobs=not_applied_jobs,
-        saved_jobs=saved_jobs)
+                           jobs=jobs,
+                           applied_jobs=applied_jobs,
+                           not_applied_jobs=not_applied_jobs,
+                           saved_jobs=saved_jobs)
     # return render_template('apply_job.html')
 
 

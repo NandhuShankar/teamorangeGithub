@@ -16,13 +16,29 @@
                 <li>Posted by: {{ job.poster }}</li>
                 <!-- More job details here -->
             </ul>
+            <form action="/save_job" method="post">
+                <input type="hidden" name="job_title" value="{{ job.title }}">
+                <input type="submit" value="Save">
             <form action="/apply_job" method="get">
                 <input type="hidden" name="job_title" value="{{ job.title }}">
                 <input type="submit" value="Apply">
             </form>
+
     {% endfor %}
     <h2>Applied Jobs</h2>
     {% for job in applied_jobs %}
+            <h3>Title: {{ job.title }}</h3>
+            <ul>
+                <li>Description: {{ job.description }}</li>
+                <li>Employer: {{ job.employer }}</li>
+                <li>Location: {{ job.location }}</li>
+                <li>Salary: {{ job.salary }}</li>
+                <li>Posted by: {{ job.poster }}</li>
+                <!-- More job details here -->
+            </ul>
+    {% endfor %}
+    <h2>Saved Jobs</h2>
+    {% for job in saved_jobs %}
             <h3>Title: {{ job.title }}</h3>
             <ul>
                 <li>Description: {{ job.description }}</li>

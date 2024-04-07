@@ -312,11 +312,32 @@ def search():
         user = find_user_by_username(session.get('username'))
         jobs = read_jobs_from_json()
         applied_jobs = [job for job in jobs if job['title'] in user['applied_jobs']]
-        not_applied_jobs = [job for job in jobs if job['title'] not in user['applied_jobs']]
+
+        # saved then don't show in not applied jobs
+        saved_jobs = [job for job in jobs if job['title'] in user['saved_jobs']]
+        not_applied_jobs = [job for job in jobs if job['title'] not in user['applied_jobs'] and job['title'] not in user['saved_jobs']]
+        #not_applied_jobs = [job for job in jobs if job['title'] not in user['applied_jobs']]
         # return render_template('search.html', jobs=jobs, current_user=session.get('username'))
 
-        return render_template('search.html', jobs=jobs, applied_jobs=applied_jobs, not_applied_jobs=not_applied_jobs)
+    return render_template('search.html',
+                           jobs=jobs,
+                           applied_jobs=applied_jobs,
+                           not_applied_jobs=not_applied_jobs,
+                           saved_jobs=saved_jobs)
 
+@app.route('/save_job', methods=['POST'])
+def save_job():
+    job_title = request.form['job_title']
+    users = read_users_from_json()
+    username = session.get('username')
+    user = next((u for u in users if u['username'] == username), None)
+
+    if 'saved_jobs' not in user:
+        user['saved_jobs'] = []
+    user['saved_jobs'] = user.get('saved_jobs', [])
+    user['saved_jobs'].append(job_title)
+    write_users_to_json(users)
+    return redirect('/search')
 
 @app.route('/apply_job/', methods=['GET', 'POST'])
 def apply_job():
@@ -360,8 +381,13 @@ def apply_job():
     jobs = read_jobs_from_json()
     applied_jobs = [job for job in jobs if job['title'] in user['applied_jobs']]
     not_applied_jobs = [job for job in jobs if job['title'] not in user['applied_jobs']]
+    saved_jobs = [job for job in jobs if job['title'] in user['saved_jobs']]
 
-    return render_template('search.html', jobs=jobs, applied_jobs=applied_jobs, not_applied_jobs=not_applied_jobs)
+    return render_template('search.html',
+        jobs=jobs,
+        applied_jobs=applied_jobs,
+        not_applied_jobs=not_applied_jobs,
+        saved_jobs=saved_jobs)
     # return render_template('apply_job.html')
 
 
@@ -472,6 +498,7 @@ def index():
                         },
                     "education": "",
                     "applied_jobs": [],
+                    "notifications": []
                 })
 
                 write_users_to_json(users)

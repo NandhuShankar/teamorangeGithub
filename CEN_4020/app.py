@@ -216,6 +216,16 @@ def user_page(username):
         # Get the list of usernames who have sent a friend request to this user
         pending_friend_requests = user.get('pendingFriendRequests', [])
 
+    # if there are notifications flash message
+    if 'notifications' in user:
+        notifications = user['notifications']
+        for notification in notifications:
+            flash(notification, 'success')
+
+            # delete the notification after flashing
+            # notifications.remove(notification)
+
+
     return render_template('user_page.html', username=username, pending_friend_requests=pending_friend_requests)
 
 
@@ -368,7 +378,7 @@ def delete_job():
 
         # push notification to all applicants
         for applicant in applicants:
-            push_notification(applicant, f"Job {job_title} has been deleted by the poster.")
+            push_notification(applicant, f"The job, \"{job_title},\" has been deleted by the poster.")
 
         # remove job from every applicants saved and applied jobs
         users = read_users_from_json()

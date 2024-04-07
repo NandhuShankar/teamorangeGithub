@@ -223,7 +223,8 @@ def user_page(username):
             flash(notification, 'success')
 
             # delete the notification after flashing
-            # notifications.remove(notification)
+            notifications.remove(notification)
+        write_users_to_json(users)
 
 
     return render_template('user_page.html', username=username, pending_friend_requests=pending_friend_requests)

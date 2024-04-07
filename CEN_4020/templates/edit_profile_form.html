@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Profile</title>
+</head>
+<body>
+    <h1>Edit Profile</h1>
+    <h1>Profile of {{ username }}</h1>
+    <p>Fullname: {{ first_name }} {{ last_name }}</p>
+    <p>Major: {{ major }}</p>
+    <p>University: {{ university }}</p>
+    <p>Description: {{ description }}</p>
+    <p>Education: {{ education }}</p>
+    <p>Experience:</p>
+    <ul>
+        <li>title: {{ experience.title }}</li>
+        <li>employer: {{ experience.employer }}</li>
+        <li>location: {{ experience.location }}</li>
+        <li>start date: {{ experience.start_date }}</li>
+        <li>end date: {{ experience.end_date }}</li>
+        <li>description: {{ experience.description }}</li>
+    </ul>
+    <form action="edit_profile_form" method="post">
+        <input type="text" name="first_name" placeholder="First Name">
+        <input type="text" name="last_name" placeholder="Last Name">
+        <input type="text" name="major" placeholder="Major">
+        <input type="text" name="university" placeholder="University">
+        <input type="text" name="description" placeholder="Description">
+        <input type="text" name="education" placeholder="Education">
+        <input type="text" name="experience_title" placeholder="Experience Title">
+        <input type="text" name="experience_employer" placeholder="Experience Employer">
+        <input type="text" name="experience_location" placeholder="Experience Location">
+        <input type="text" name="experience_start_date" placeholder="Experience Start Date">
+        <input type="text" name="experience_end_date" placeholder="Experience End Date">
+        <input type="text" name="experience_description" placeholder="Experience Description">
+        <input type="submit" value="Update Profile">
+    </form>
+    <a href="/profile/{{ username }}">Go Back to Profile</a>
+
+</body>
+</html>

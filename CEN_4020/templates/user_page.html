@@ -28,6 +28,17 @@
         <!-- Add other important links here -->
     </div>
     <h1>Welcome, {{ username }}!</h1>
+        <!--  Display Notifications  -->
+        {% with notifications = get_flashed_messages()%}
+            {% if notifications %}
+                <h3> Notifications: </h3>
+                <ul>
+                    {% for notification in notifications %}
+                        <li>{{ notification }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
         <!-- Display pending friend requests if there are any -->
         {% if pending_friend_requests %}
         <h2>Pending Friend Requests</h2>
@@ -48,6 +59,7 @@
         <p>No pending friend requests.</p>
     {% endif %}
     <ul>
+        <li><a href="/profile/{{ username }}">View your profile</a></li>
         <li><a href="/find">Find someone you know</a></li>
         <li><a href="/learn">Learn new skill</a></li>
         <li><a href="/search">Search for job</a></li>

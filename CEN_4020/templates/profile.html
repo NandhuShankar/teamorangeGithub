@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Profile</title>
+</head>
+<body>
+<h1>Profile of {{ username }}</h1>
+<p>Fullname: {{ first_name }} {{ last_name }}</p>
+<p>Major: {{ major }}</p>
+<p>University: {{ university }}</p>
+<p>Description: {{ description }}</p>
+<p>Education: {{ education }}</p>
+<p>Experience:</p>
+<ul>
+    <li>title: {{ experience.title }}</li>
+    <li>employer: {{ experience.employer }}</li>
+    <li>location: {{ experience.location }}</li>
+    <li>start date: {{ experience.start_date }}</li>
+    <li>end date: {{ experience.end_date }}</li>
+    <li>description: {{ experience.description }}</li>
+</ul>
+{% if current_user == username %}
+    <a href="/edit_profile_form">Edit Profile</a>
+    <a href="/user/{{ username }}">Go back</a>
+{% else %}
+    <a href="/show-my-network/{{ current_user }}">Go back</a>
+{% endif %}
+</body>
+</html>

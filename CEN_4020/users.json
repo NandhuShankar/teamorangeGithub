@@ -5,7 +5,9 @@
         "first_name": "Nandhu",
         "last_name": "Shankar",
         "sentFriendRequests": [],
-        "friends": []
+        "friends": [
+            "sb"
+        ]
     },
     {
         "username": "sb",
@@ -13,6 +15,62 @@
         "first_name": "Spongebob",
         "last_name": "Squarepants",
         "pendingFriendRequests": [],
-        "friends": []
+        "friends": [
+            "nandhu"
+        ]
+    },
+    {
+        "username": "Squash",
+        "password": "asdf",
+        "first_name": "Spongebob",
+        "last_name": "Squarepants",
+        "profile_made": true,
+        "major": "Comp sci",
+        "university": "USF",
+        "description": "What a good description",
+        "experience": {
+            "title": "test title",
+            "employer": "Krusty Krab",
+            "location": "Under the sea",
+            "start_date": "idk 1999",
+            "end_date": "2024",
+            "description": "sells krabby patties"
+        },
+        "education": "AA",
+        "pendingFriendRequests": [],
+        "friends": [
+            "pat"
+        ],
+        "applied_jobs": [],
+        "saved_jobs": [],
+        "notifications": [
+            "The job, \"Chum Bucket,\" has been deleted by the poster."
+        ]
+    },
+    {
+        "username": "pat",
+        "password": "pat",
+        "first_name": "Patrick",
+        "last_name": "Star",
+        "profile_made": false,
+        "major": "",
+        "university": "",
+        "description": "",
+        "experience": {
+            "title": "",
+            "employer": "",
+            "location": "",
+            "start_date": "",
+            "end_date": "",
+            "description": ""
+        },
+        "education": "",
+        "sentFriendRequests": [],
+        "friends": [
+            "Squash"
+        ],
+        "applied_jobs": [],
+        "saved_jobs": [],
+        "notifications": []
     }
 ]

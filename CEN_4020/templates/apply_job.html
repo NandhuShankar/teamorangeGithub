@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Apply to {{ job.title }}</h1>
+    <form action="/apply_job/" method="post">
+        <input type="hidden" name="job_info" value="{{ job.title }}">
+        <label>Graduation Date</label>
+        <input type="date" name="grad_date" placeholder="Graduation Date" required>
+        <label>Date Available: </label>
+        <input type="date" name="date_available" placeholder="Date Available" required>
+        <label>Why are you a good fit for the job?:</label>
+        <textarea name="why_fit" placeholder="Why are you a good fit for the job?" required></textarea>
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>

@@ -40,6 +40,11 @@
         "pendingFriendRequests": [],
         "friends": [
             "pat"
+        ],
+        "applied_jobs": [],
+        "saved_jobs": [],
+        "notifications": [
+            "The job, \"Chum Bucket,\" has been deleted by the poster."
         ]
     },
     {
@@ -64,8 +69,8 @@
         "friends": [
             "Squash"
         ],
-        "applied_jobs": [
-            "cs intern"
-        ]
+        "applied_jobs": [],
+        "saved_jobs": [],
+        "notifications": []
     }
 ]

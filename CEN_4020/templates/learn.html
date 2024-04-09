@@ -2,25 +2,57 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Learn New Skills</title>
+    <title>Page Under Construction</title>
+    <style>
+        /* Basic Reset */
+        body, h1, p, form, input {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        /* General body styling */
+        body {
+            background-color: #f3f2ef;
+            color: #283e4a;
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        /* Header styles */
+        h1 {
+            color: #0073b1;
+            margin-bottom: 20px;
+        }
+
+        p {
+            margin-bottom: 20px;
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        input[type="submit"] {
+            background-color: #0073b1;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #005691;
+        }
+    </style>
 </head>
 <body>
-    <h1>Learn New Skills</h1>
-    <div>
-        <h2>Skill 1 - Learn 3D Printing</h2>
-        <p>Dive into the world of 3D printing where you can learn how to create three-dimensional objects from digital models.</p>
-        
-        <h2>Skill 2 - Learn Data Structures</h2>
-        <p>Understanding data structures is fundamental for anyone looking to improve their coding skills and solve complex problems efficiently.</p>
-        
-        <h2>Skill 3 - Learn Analysis of Algorithms</h2>
-        <p>Learn how to analyze algorithms, understand their complexity, and optimize their performance.</p>
-        
-        <h2>Skill 4 - Learn Database Design</h2>
-        <p>Master the art of designing robust, scalable databases that can support the backend of any application.</p>
-        
-        <h2>Skill 5 - Learn Architecture</h2>
-        <p>Explore the principles of architecture to understand how to design systems that are scalable, reliable, and maintainable.</p>
-    </div>
+    <h1>Under Construction</h1>
+    <p>This page is currently under construction. Please check back later.</p>
+    <form action="{{ url_for('user_page', username=username) }}">
+        <input type="submit" value="Go Back">
+    </form>
 </body>
 </html>

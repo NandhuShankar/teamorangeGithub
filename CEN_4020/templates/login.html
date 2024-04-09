@@ -3,6 +3,75 @@
 <head>
     <meta charset="UTF-8">
     <title>Login or Signup</title>
+    <style>
+        /* Basic Reset */
+        body, h2, h3, form, input, a, p, div {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        /* General body styling */
+        body {
+            background-color: #f3f2ef;
+            color: #283e4a;
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        /* Headings */
+        h2, h3 {
+            color: #0073b1;
+            margin: 20px 0;
+        }
+
+        /* Form and input styles */
+        form {
+            margin-bottom: 20px;
+        }
+
+        input[type="text"], input[type="password"], input[type="submit"] {
+            padding: 8px;
+            margin-top: 5px;
+            display: block;
+            width: 300px; /* fixed width for better alignment */
+            box-sizing: border-box; /* padding doesn't affect width */
+        }
+
+        input[type="submit"] {
+            background-color: #0073b1;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #005691;
+        }
+
+        /* Link styling */
+        a {
+            color: #0073b1;
+            text-decoration: none;
+            margin-right: 5px;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* Message div styling */
+        div {
+            margin-bottom: 20px;
+        }
+
+        /* Error or info messages styling */
+        .error, .info {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
     <script>
         function playVideo() {
             // Display the text "video is playing"
@@ -37,8 +106,6 @@
         <a href="/brand_policy">Brand Policy</a> |
         <a href="/guest_control">Guest Control</a> |
         <a href="/language">Language</a> |
-
-        <!-- Add other important links here -->
     </div>
     <h2>Signup</h2>
     <form action="/" method="post">
@@ -54,13 +121,8 @@
         <input type="password" name="password" placeholder="Password" required>
         <input type="submit" name="login" value="Login">
     </form>
-    <br>
-    <p>After graduating from college with a business degree, I was eager to start my career but struggling to <br>
-        land interviews. I heard about InCollege from a friend - it's an online platform that matches college <br>
-        students and grads with great companies and jobs. I created my profile and instantly had access to "<br>
-        thousands of job openings at awesome companies. InCollege's matching technology suggested roles that <br>
-        aligned perfectly with my degree, skills, and interests.</p>
-        <p>Would you like an explanation video?</p>
+    <p>After graduating from college with a business degree, I was eager to start my career but struggling to land interviews...</p>
+    <p>Would you like an explanation video?</p>
     <button onclick="playVideo()">Play Video</button>
     <p id="videoStatus"></p>
 </body>

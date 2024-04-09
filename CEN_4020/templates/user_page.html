@@ -3,6 +3,71 @@
 <head>
     <meta charset="UTF-8">
     <title>Welcome</title>
+    <style>
+        /* Basic Reset */
+        body, h1, h2, h3, p, ul, li, a, form, input {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        /* General body styling */
+        body {
+            background-color: #f3f2ef;
+            color: #283e4a;
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        /* Header styles */
+        h1, h2, h3 {
+            color: #0073b1;
+            margin: 20px 0;
+        }
+
+        /* Link styling */
+        a {
+            color: #0073b1;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* List styling */
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        /* Form and input styles */
+        form {
+            display: inline; /* Align buttons next to text */
+        }
+
+        input[type="submit"] {
+            background-color: #0073b1;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-left: 10px; /* Space out from text */
+        }
+
+        input[type="submit"]:hover {
+            background-color: #005691;
+        }
+
+        div {
+            margin-bottom: 20px;
+        }
+    </style>
 </head>
 <body>
     <div>
@@ -24,29 +89,14 @@
         <a href="/brand_policy">Brand Policy</a> |
         <a href="/guest_control">Guest Control</a> |
         <a href="/language">Language</a> |
-
-        <!-- Add other important links here -->
     </div>
     <h1>Welcome, {{ username }}!</h1>
-        <!--  Display Notifications  -->
-        {% with notifications = get_flashed_messages()%}
-            {% if notifications %}
-                <h3> Notifications: </h3>
-                <ul>
-                    {% for notification in notifications %}
-                        <li>{{ notification }}</li>
-                    {% endfor %}
-                </ul>
-            {% endif %}
-        {% endwith %}
-        <!-- Display pending friend requests if there are any -->
-        {% if pending_friend_requests %}
+    {% if pending_friend_requests %}
         <h2>Pending Friend Requests</h2>
         <ul>
             {% for friend_request in pending_friend_requests %}
                 <li>
-                    {{ friend_request }} <!-- Display the username of the person who sent the friend request -->
-                    <!-- Form for accepting a friend request -->
+                    {{ friend_request }}
                     <form action="/accept-friend-request" method="post">
                         <input type="hidden" name="from_username" value="{{ friend_request }}">
                         <input type="hidden" name="to_username" value="{{ username }}">
@@ -59,7 +109,6 @@
         <p>No pending friend requests.</p>
     {% endif %}
     <ul>
-        <li><a href="/profile/{{ username }}">View your profile</a></li>
         <li><a href="/find">Find someone you know</a></li>
         <li><a href="/learn">Learn new skill</a></li>
         <li><a href="/search">Search for job</a></li>

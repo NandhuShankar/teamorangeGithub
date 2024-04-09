@@ -1,9 +1,47 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <title>Messaging</title>
+    <style>
+        /* Basic styling */
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #f3f2ef;
+            color: #283e4a;
+        }
+
+        button {
+            background-color: #0073b1;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #005691;
+        }
+    </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"
-     integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA=="
-     crossorigin="anonymous">
+            integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA=="
+            crossorigin="anonymous">
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Connect to the server-side socket
+            const socket = io();
+
+            // Example: Send a 'hello' event to the server
+            socket.emit('hello', { sender: '{{ sender }}', receiver: '{{ receiver }}' });
+
+            // Example: Listen for a 'message' event from the server
+            socket.on('message', function(data) {
+                console.log('Message received:', data);
+            });
+        });
     </script>
 </head>
 <body>

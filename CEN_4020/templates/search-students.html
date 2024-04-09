@@ -3,6 +3,77 @@
 <head>
     <meta charset="UTF-8">
     <title>Search Students</title>
+    <style>
+        /* Basic Reset */
+        body, h1, h2, p, ul, li, form, input, button {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        /* General body styling */
+        body {
+            background-color: #f3f2ef;
+            color: #283e4a;
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        /* Header styles */
+        h1, h2 {
+            color: #0073b1;
+            margin-bottom: 20px;
+        }
+
+        /* Form and input styles */
+        form {
+            margin-bottom: 20px;
+        }
+
+        input[type="text"], input[type="submit"], input[type="hidden"] {
+            padding: 8px;
+            margin-top: 5px;
+            display: block;
+            width: 100%; /* make full width to fit container */
+            box-sizing: border-box; /* padding doesn't affect width */
+        }
+
+        input[type="submit"] {
+            background-color: #0073b1;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #005691;
+        }
+
+        /* List styling */
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        button {
+            background-color: #0073b1;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #005691;
+        }
+    </style>
 </head>
 <body>
     <h1>Search for Students</h1>
